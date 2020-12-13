@@ -10,6 +10,9 @@ import { Redirect } from '@reach/router'
 import utilNav from '../services/utilNav'
 import { navigate } from 'gatsby';
 
+let user = null;
+
+
 
 class Login extends React.Component {
 
@@ -24,7 +27,11 @@ class Login extends React.Component {
   }
 
   componentWillMount() {
-    if (!isAuthenticated()) {
+    user = getProfile()
+    user = user['https://app.io/user_metadata']
+    console.log("user", user)
+    if (user == undefined) {
+      console.log("in here undefined")
       login()
     }
     else {
