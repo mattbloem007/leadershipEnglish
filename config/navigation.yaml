@@ -1,0 +1,6 @@
+- name: "Home"
+  link: "/"
+- name: "Our Classes"
+  link: "/courses"
+- name: "Blog"
+  link: "/blog"
