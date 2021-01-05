@@ -16,7 +16,7 @@ const Area = styled(animated.div)`
   grid-template-rows: 35vw 40vw 25vw;
   grid-template-areas:
     'first-project first-project first-project'
-    'mid about-us about-us'
+    'mid mid about-us'
     'instagram instagram instagram';
 
   @media (max-width: ${(props) => props.theme.breakpoints[3]}) {
@@ -24,9 +24,9 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project about-us about-us'
-      'three-projects three-projects three-projects three-projects'
-      'three-projects three-projects three-projects three-projects'
+      'first-project first-project first-project first-project'
+      'mid mid about-us about-us'
+      'mid mid about-us about-us'
       'instagram instagram instagram instagram';
   }
 
@@ -69,6 +69,9 @@ const ThreeProjects = styled.div`
 const AboutUs = styled(GridItem)`
   grid-area: about-us;
 `
+const Courses = styled(GridItem)`
+  grid-area: courses;
+`
 const Instagram = styled(GridItem)`
   grid-area: instagram;`
 
@@ -76,7 +79,7 @@ class PageItem extends React.Component {
 
     render() {
       let isImage = false;
-      console.log("Cat", this.props.data.node.categories)
+      console.log("Cat", this.props.title)
       if (this.props.file.node.childImageSharp) {
         isImage = true;
       }
@@ -145,6 +148,17 @@ class PageItem extends React.Component {
 
               );
             break;
+
+            case 12:
+            console.log("Made course project", this.props.data.node)
+                return (
+                  <Courses to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+                    {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                    <span>{this.props.data.node.title}</span>
+                  </Courses>
+
+                );
+              break;
 
         default:
         if (this.props.data.node.categories) {
@@ -217,10 +231,12 @@ export default function(props) {
     let fileIndex;
     if (props.data.wpgraphql.posts.edges != undefined) {
       const data = props.data.wpgraphql.posts.edges;
+      console.log("FILES", props.data.allFile.edges)
       data.forEach(function(e, i) {
           if (props.remove && e.node.id === props.remove) return;
             fileIndex = props.data.allFile.edges.find(({node}) => {
               if (node.parent) {
+                console.log(node.parent.id)
                 if (lang != undefined) {
                   if (node.parent.id == `SitePage /${lang}/` + e.node.slug) {
                     return node
@@ -230,7 +246,6 @@ export default function(props) {
                   }
                 }
                 else {
-                  console.log("PARENT ", node.parent.id)
                   if (node.parent.id == `SitePage /` + e.node.slug) {
                     return node
                   }
@@ -248,7 +263,7 @@ export default function(props) {
             }
 
       });
-
+      console.log(items)
     }
     return <Area>{items}</Area>;
 }

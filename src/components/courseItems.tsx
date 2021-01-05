@@ -24,9 +24,9 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project about-us about-us'
-      'three-projects three-projects three-projects three-projects'
-      'three-projects three-projects three-projects three-projects'
+      'about-us about-us about-us about-us'
+      'mid mid mid mid'
+      'mid mid mid mid'
       'instagram instagram instagram instagram';
   }
 

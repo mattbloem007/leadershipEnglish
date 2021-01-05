@@ -25,8 +25,8 @@ const Area = styled(animated.div)`
 
     grid-template-areas:
       'first-project first-project about-us about-us'
-      'three-projects three-projects three-projects three-projects'
-      'three-projects three-projects three-projects three-projects'
+      'mid  mid2 mid3 mid3'
+      'mid  mid2 mid3 mid3'
       'instagram instagram instagram instagram';
   }
 
@@ -115,9 +115,9 @@ class CourseItemCn extends React.Component {
           else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"})) {
             console.log("Made grid project", this.props.data.node)
             return (
-              <GridItem to="#">
+              <FirstProject to="#">
                 {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-              </GridItem>
+              </FirstProject>
             )
           }
           //else if (this.props.lang == "us") {

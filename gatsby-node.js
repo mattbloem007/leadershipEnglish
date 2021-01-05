@@ -284,7 +284,7 @@ pages{
       });
 
       blog.forEach((node) => {
-      //  console.log("Blog: ", node.slug)
+        console.log("Blog: ", node.slug)
         if (node.tags.edges.length > 0) {
           if(node.tags.edges[0].node.name != lang) {
             langu = node.tags.edges[0].node.name
@@ -393,22 +393,25 @@ pages{
         else if (lang == "us"){
           langu = lang
           console.log(langu, " ", node.slug, " ", node.id)
-          createPage({
-              path: `/${node.slug}`,
-              component: projectTemplate,
-              context: {
-                  id: node.id,
-                  slug: node.slug,
-                  images: node.featuredImage,
-                  content: node.content,
-                  excerpt: node.excerpt,
-                  title: node.title,
-                  id2:  {"eq": `SitePage /${node.slug}`},
-                  featuredImage: node.featuredImage,
-                  originalPath: `/${node.slug}`,
-                //  lang: langu
-              }
-            })
+          if (!(node.slug == "courses" || node.slug == "courses-2")) {
+            createPage({
+                path: `/${node.slug}`,
+                component: projectTemplate,
+                context: {
+                    id: node.id,
+                    slug: node.slug,
+                    images: node.featuredImage,
+                    content: node.content,
+                    excerpt: node.excerpt,
+                    title: node.title,
+                    id2:  {"eq": `SitePage /${node.slug}`},
+                    featuredImage: node.featuredImage,
+                    originalPath: `/${node.slug}`,
+                  //  lang: langu
+                }
+              })
+          }
+
         }
 
         });
