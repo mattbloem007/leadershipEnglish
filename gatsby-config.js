@@ -102,7 +102,7 @@ module.exports = {
          // This is field under which it's accessible
          fieldName: `wpgraphql`,
          // Url to query from
-         url: `http://wordpress.futureleadership.online/wordpress/graphql`,
+         url: `https://onlinetutoringservives.com/wordpress/graphql`,
       //  url: `http://alchemy-of-remembrance.local/graphql`
        },
      },
