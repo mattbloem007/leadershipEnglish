@@ -24,7 +24,7 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project first-project first-project'
+      'first-project first-project class class'
       'mid mid about-us about-us'
       'mid mid about-us about-us'
       'instagram instagram instagram instagram';
@@ -59,6 +59,9 @@ const Area = styled(animated.div)`
 const FirstProject = styled(GridItem)`
   grid-area: first-project;
 `
+const Classes = styled(GridItem)`
+  grid-area: class;
+`
 
 const Mid = styled(GridItem)`
   grid-area: mid;
@@ -80,8 +83,10 @@ class PageItem extends React.Component {
     render() {
       let isImage = false;
       console.log("Cat", this.props.title)
-      if (this.props.file.node.childImageSharp) {
-        isImage = true;
+      if(this.props.file) {
+        if (this.props.file.node.childImageSharp) {
+          isImage = true;
+        }
       }
 
       switch (this.props.title) {
@@ -147,6 +152,15 @@ class PageItem extends React.Component {
                 </AboutUs>
 
               );
+            break;
+            case 10:
+            console.log(this.props.data)
+            return(
+            <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
+              <Img fluid={this.props.data.cover.childImageSharp.fluid} />
+              <span>{this.props.data.title}</span>
+            </Classes>
+          )
             break;
 
             case 12:
@@ -263,6 +277,7 @@ export default function(props) {
             }
 
       });
+      items.push(<PageItem key={"e.node.id"} data={props.data.firstProject} file={null} title={10}/>)
       console.log(items)
     }
     return <Area>{items}</Area>;

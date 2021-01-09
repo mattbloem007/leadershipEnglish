@@ -421,6 +421,8 @@ const auth = isBrowser
 export const lock = isBrowser
     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
 
+              language: 'zh',
+
               auth: {
                   audience: 'https://future-eng.us.auth0.com/api/v2/',
                   redirectUrl: 'https://futureleadership.online/us/profile', //'http://localhost:8000/us/profile',
@@ -459,12 +461,12 @@ export const lock = isBrowser
                   name: "city",
                   placeholder: "Enter your city",
                 },
-                {
-                  type: "select",
-                  name: "time_zone",
-                  placeholder: "Choose your time zone",
-                  options: timeOptions,
-                },
+                // {
+                //   type: "select",
+                //   name: "time_zone",
+                //   placeholder: "Choose your time zone",
+                //   options: timeOptions,
+                // },
                 {
                   name: "email",
                   placeholder: "Enter your email",
