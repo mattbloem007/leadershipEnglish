@@ -1,8 +1,10 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import PageItems from "./pageItems";
+import PageItemsCn from "./pageItemscn";
 import styled from 'styled-components'
 import GridItem from './grid-item'
+import { usePageContext } from '../../PageContext';
 
 import { animated, useSpring, config } from 'react-spring'
 
@@ -117,6 +119,19 @@ export default function() {
                      }
                    }
                  }
+                 threeProjects: allProjectsYaml(limit: 1, skip: 1) {
+                        nodes {
+                          title
+                          slug
+                          cover {
+                            childImageSharp {
+                              fluid(quality: 95, maxWidth: 1200) {
+                                ...GatsbyImageSharpFluid_withWebp
+                              }
+                            }
+                          }
+                        }
+                      }
 
             instagram: file(sourceInstanceName: { eq: "images" }, name: { eq: "boston" }) {
               childImageSharp {
@@ -138,14 +153,21 @@ export default function() {
 
     if (query.wpgraphql.posts.edges.length > 0) {
       console.log("QUERY", query.wpgraphql.posts)
+      const { lang } = usePageContext();
       const pageAnimation = useSpring({
         config: config.slow,
         from: { opacity: 0 },
         to: { opacity: 1 },
       })
+      if (lang == "cn") {
+        return (
+                <PageItemsCn data={query} />
+        );
+      } else {
         return (
                 <PageItems data={query} />
         );
+      }
     } else {
         return <React.Fragment></React.Fragment>;
     }

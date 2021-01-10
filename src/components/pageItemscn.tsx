@@ -78,7 +78,7 @@ const Courses = styled(GridItem)`
 const Instagram = styled(GridItem)`
   grid-area: instagram;`
 
-class PageItem extends React.Component {
+class PageItemCn extends React.Component {
 
     render() {
       let isImage = false;
@@ -153,7 +153,7 @@ class PageItem extends React.Component {
 
               );
             break;
-            case 10:
+            case 15:
             console.log(this.props.data)
             return(
             <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
@@ -273,11 +273,11 @@ export default function(props) {
             })
 
             if (fileIndex) {
-              items.push(<PageItem key={e.node.id} data={e} file={fileIndex} title={i}/>);
+              items.push(<PageItemCn key={e.node.id} data={e} file={fileIndex} title={i}/>);
             }
 
       });
-      items.push(<PageItem key={"e.node.id"} data={props.data.firstProject} file={null} title={10} />)
+      items.push(<PageItemCn key={"e.node.id"} data={props.data.firstProject} file={null} title={15} />)
       console.log(items)
     }
     return <Area>{items}</Area>;
