@@ -82,13 +82,13 @@ const Mid3 = styled(GridItem)`
   grid-area: mid3;
 `
 const Mid5 = styled(GridItem)`
-  grid-area: mid3;
+  grid-area: mid5;
 `
 const Mid6 = styled(GridItem)`
-  grid-area: mid3;
+  grid-area: mid6;
 `
 const Mid4 = styled(GridItem)`
-  grid-area: mid3;
+  grid-area: mid4;
 `
 const Instagram = styled(GridItem)`
   grid-area: instagram;`
