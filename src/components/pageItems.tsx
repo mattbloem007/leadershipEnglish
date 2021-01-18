@@ -143,16 +143,16 @@ class PageItem extends React.Component {
             );
           break;
 
-          case 6:
-          console.log("Made about project", this.props.data.node)
-              return (
-                <AboutUs to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
-                  {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-                  <span>{this.props.data.node.title}</span>
-                </AboutUs>
-
-              );
-            break;
+          // case 6:
+          // console.log("Made about project", this.props.data.node)
+          //     return (
+          //       <AboutUs to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+          //         {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+          //         <span>{this.props.data.node.title}</span>
+          //       </AboutUs>
+          //
+          //     );
+          //   break;
 
             case 5:
             console.log("Made instagram project", this.props.data.node)
