@@ -157,7 +157,7 @@ class PageItem extends React.Component {
             case 12:
             console.log("Made instagram project", this.props.data.node)
                 return (
-                  <Instagram to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`>
+                  <Instagram to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
                     {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
                     <span>{this.props.data.node.title}</span>
                   </Instagram>
