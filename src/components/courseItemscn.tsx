@@ -15,7 +15,7 @@ const Area = styled(animated.div)`
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 35vw 40vw 25vw;
   grid-template-areas:
-    'first-project about-us about-us'
+    'mid4 mid5 mid6'
     'mid  mid2 mid3'
     'instagram instagram instagram';
 
@@ -218,11 +218,11 @@ export default function(props) {
                 }
               }
             })
-            console.log(fileIndex)
+
             if (fileIndex) {
               items.push(<CourseItemCn key={e.node.id} data={e} file={fileIndex} lang={lang}/>);
             }
-
+            console.log(items)
       });
     }
     return <Area>{items}</Area>;
