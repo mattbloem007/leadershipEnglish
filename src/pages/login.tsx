@@ -13,15 +13,16 @@ import { navigate } from 'gatsby';
 let user = null;
 
 
-
 class Login extends React.Component {
 
 
   constructor(props) {
       super(props);
 
+      console.log(props)
 
       this.state = {
+        pc: props.pageContext
       };
 
   }
@@ -31,8 +32,14 @@ class Login extends React.Component {
     user = user['https://app.io/user_metadata']
     console.log("user", user)
     if (user == undefined) {
-      console.log("in here undefined")
-      login()
+      if (Object.entries(this.state.pc).length == 0) {
+        console.log("in here undefined")
+        login("us")
+      }
+      else {
+        login("cn")
+      }
+
     }
     else {
       navigate('/us/profile');

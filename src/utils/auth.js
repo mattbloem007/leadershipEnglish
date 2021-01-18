@@ -421,7 +421,7 @@ const auth = isBrowser
 export const lock = isBrowser
     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
 
-              language: 'zh',
+            //  language: 'zh',
 
               auth: {
                   audience: 'https://future-eng.us.auth0.com/api/v2/',
@@ -437,30 +437,30 @@ export const lock = isBrowser
                   name: "student_name",
                   placeholder: "Enter your name",
                 },
-                {
-                  name: "age",
-                  placeholder: "Enter your age",
-                },
-                {
-                  type: "select",
-                  name: "gender",
-                  options: genderOptions,
-                  placeholder: "Choose your gender",
-                },
-                {
-                  type: "select",
-                  name: "eng_level",
-                  placeholder: "Choose your english proficiency level",
-                  options: engLevelOptions,
-                },
-                {
-                  name: "country",
-                  placeholder: "Enter your country",
-                },
-                {
-                  name: "city",
-                  placeholder: "Enter your city",
-                },
+                // {
+                //   name: "age",
+                //   placeholder: "Enter your age",
+                // },
+                // {
+                //   type: "select",
+                //   name: "gender",
+                //   options: genderOptions,
+                //   placeholder: "Choose your gender",
+                // },
+                // {
+                //   type: "select",
+                //   name: "eng_level",
+                //   placeholder: "Choose your english proficiency level",
+                //   options: engLevelOptions,
+                // },
+                // {
+                //   name: "country",
+                //   placeholder: "Enter your country",
+                // },
+                // {
+                //   name: "city",
+                //   placeholder: "Enter your city",
+                // },
                 // {
                 //   type: "select",
                 //   name: "time_zone",
@@ -471,24 +471,24 @@ export const lock = isBrowser
                   name: "email",
                   placeholder: "Enter your email",
                 },
-                {
-                  name: "number",
-                  placeholder: "Enter your number",
-                },
+                // {
+                //   name: "number",
+                //   placeholder: "Enter your number",
+                // },
                 // {
                 //   type: "select",
                 //   name: "class_option",
                 //   options: classOptions,
                 //   placeholder: "Choose class option",
                 // },
-                {
-                  name: "parent_email",
-                  placeholder: "Enter a parent's email",
-                },
-                {
-                  name: "second_email_contact",
-                  placeholder: "Enter 2nd email"
-                }
+                // {
+                //   name: "parent_email",
+                //   placeholder: "Enter a parent's email",
+                // },
+                // {
+                //   name: "second_email_contact",
+                //   placeholder: "Enter 2nd email"
+                // }
             ],
           }
       ).on('authenticated', function(authResult) {
@@ -499,6 +499,88 @@ export const lock = isBrowser
               // use authResult.idTokenPayload for profile information
           }
       }) : {};
+
+      // export const lockCn = isBrowser
+      //     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
+      //
+      //               language: 'zh',
+      //
+      //               auth: {
+      //                   audience: 'https://future-eng.us.auth0.com/api/v2/',
+      //                   redirectUrl: 'https://futureleadership.online/us/profile', //'http://localhost:8000/us/profile',
+      //                   responseType: 'token id_token',
+      //                   autoParseHash: false,
+      //                   params: {
+      //                       scope: 'openid email profile'
+      //                   }
+      //               },
+      //               additionalSignUpFields: [
+      //                 {
+      //                   name: "student_name",
+      //                   placeholder: "Enter your name",
+      //                 },
+      //                 // {
+      //                 //   name: "age",
+      //                 //   placeholder: "Enter your age",
+      //                 // },
+      //                 // {
+      //                 //   type: "select",
+      //                 //   name: "gender",
+      //                 //   options: genderOptions,
+      //                 //   placeholder: "Choose your gender",
+      //                 // },
+      //                 // {
+      //                 //   type: "select",
+      //                 //   name: "eng_level",
+      //                 //   placeholder: "Choose your english proficiency level",
+      //                 //   options: engLevelOptions,
+      //                 // },
+      //                 // {
+      //                 //   name: "country",
+      //                 //   placeholder: "Enter your country",
+      //                 // },
+      //                 // {
+      //                 //   name: "city",
+      //                 //   placeholder: "Enter your city",
+      //                 // },
+      //                 // {
+      //                 //   type: "select",
+      //                 //   name: "time_zone",
+      //                 //   placeholder: "Choose your time zone",
+      //                 //   options: timeOptions,
+      //                 // },
+      //                 {
+      //                   name: "email",
+      //                   placeholder: "Enter your email",
+      //                 },
+      //                 // {
+      //                 //   name: "number",
+      //                 //   placeholder: "Enter your number",
+      //                 // },
+      //                 // {
+      //                 //   type: "select",
+      //                 //   name: "class_option",
+      //                 //   options: classOptions,
+      //                 //   placeholder: "Choose class option",
+      //                 // },
+      //                 // {
+      //                 //   name: "parent_email",
+      //                 //   placeholder: "Enter a parent's email",
+      //                 // },
+      //                 // {
+      //                 //   name: "second_email_contact",
+      //                 //   placeholder: "Enter 2nd email"
+      //                 // }
+      //             ],
+      //           }
+      //       ).on('authenticated', function(authResult) {
+      //         console.log("IN Authenticatred", authResult)
+      //           if (authResult && authResult.accessToken && authResult.idToken) {
+      //               hash = authResult.idTokenPayload.at_hash
+      //               setSession(authResult);
+      //               // use authResult.idTokenPayload for profile information
+      //           }
+      //       }) : {};
 
 export const isAuthenticated = () => {
   if (!isBrowser) {
@@ -518,14 +600,22 @@ export const silentAuth = callback => {
   lock.checkSession({}, setSession(callback))
 }
 
-export const login = () => {
+export const login = (lang) => {
   if (!isBrowser) {
     return
   }
 
-//  auth.authorize()
+console.log (lang)
 
+if (lang != "cn") {
+  console.log("Inside us login")
   lock.show()
+
+}
+// else {
+//   lockCn.show()
+// }
+
 
 }
 

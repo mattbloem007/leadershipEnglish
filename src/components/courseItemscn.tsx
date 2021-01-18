@@ -24,7 +24,7 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project about-us about-us'
+      'first-project mid4 mid5 mid6'
       'mid  mid2 mid3 mid3'
       'mid  mid2 mid3 mid3'
       'instagram instagram instagram instagram';
@@ -79,6 +79,15 @@ const Mid2 = styled(GridItem)`
   grid-area: mid2;
 `
 const Mid3 = styled(GridItem)`
+  grid-area: mid3;
+`
+const Mid5 = styled(GridItem)`
+  grid-area: mid3;
+`
+const Mid6 = styled(GridItem)`
+  grid-area: mid3;
+`
+const Mid4 = styled(GridItem)`
   grid-area: mid3;
 `
 const Instagram = styled(GridItem)`
@@ -145,6 +154,30 @@ class CourseItemCn extends React.Component {
                   {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
                   <span>{this.props.data.node.title}</span>
                 </Mid3>
+              )
+            }
+            else if (this.props.data.node.slug == "new-china-course-1"){
+              return (
+                <Mid4 to={`/courses/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+                  {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                  <span>{this.props.data.node.title}</span>
+                </Mid4>
+              )
+            }
+            else if (this.props.data.node.slug == "new-china-course-2"){
+              return (
+                <Mid5 to={`/courses/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+                  {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                  <span>{this.props.data.node.title}</span>
+                </Mid5>
+              )
+            }
+            else if (this.props.data.node.slug == "new-china-course-3"){
+              return (
+                <Mid6 to={`/courses/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+                  {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                  <span>{this.props.data.node.title}</span>
+                </Mid6>
               )
             }
 

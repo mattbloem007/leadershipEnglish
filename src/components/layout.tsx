@@ -9,6 +9,8 @@ import theme from '../../config/theme'
 import reset from '../styles/reset'
 import Logo from './logo'
 import LanguagePicker from './language-picker'
+import { usePageContext } from '../../PageContext';
+
 
 const GlobalStyles = createGlobalStyle`
   *::before,
@@ -222,7 +224,8 @@ interface QueryResult {
 
 const Layout = ({ children, color }: LayoutProps) => {
   const data: QueryResult = useStaticQuery(query)
-
+  const { lang } = usePageContext();
+  console.log(lang)
   return (
     <ThemeProvider theme={theme}>
       <>
@@ -240,13 +243,26 @@ const Layout = ({ children, color }: LayoutProps) => {
             <Footer color={color}>
               <Box p={[1, 1, 5]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
               <PButton color="#ff0000" py={4} px={4}>
-                <Link to="/login">
-                  Register to Enroll in Courses Now
-                </Link>
+              {(() => {
+                 if (lang != 'cn') {
+                   return (
+                     <Link to="/login">
+                       Register to Enroll in Courses Now
+                     </Link>
+                   )
+                 } else if (lang == 'cn') {
+                   return (
+                     <Link to="/login">
+                       注册购买课程
+                     </Link>
+                   )
+                 }
+               })()}
+
                 </PButton>
               </Box>
             </Footer>
-            
+
             <Box width={['3rem', '4rem', '5rem', '6rem']}>
               <Nav
                 color={color}
@@ -273,11 +289,25 @@ const Layout = ({ children, color }: LayoutProps) => {
                 alignItems="flex-start"
               >
               <LanguagePicker />
-                {data.navigation.nodes.map((item) => (
-                  <Link to={item.link} key={item.name}>
-                    {item.name}
-                  </Link>
-                ))}
+              {(() => {
+                 if (lang != 'cn') {
+                   return (
+                     data.navigation.nodes.map((item) => (
+                     <Link to={item.link} key={item.name}>
+                       {item.name}
+                     </Link>
+                   ))
+                   )
+                 } else if (lang == 'cn') {
+                   return (
+                     data.navigationCN.nodes.map((item) => (
+                     <Link to={item.link} key={item.name}>
+                       {item.name}
+                     </Link>
+                   ))
+                   )
+                 }
+               })()}
               </Nav>
             </Flex>
           </SideBarInner>
@@ -296,6 +326,13 @@ Layout.defaultProps = defaultProps
 const query = graphql`
   query Layout {
     navigation: allNavigationYaml {
+      nodes {
+        name
+        link
+      }
+    }
+
+    navigationCN: allNavigationCnYaml {
       nodes {
         name
         link

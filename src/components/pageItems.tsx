@@ -153,6 +153,16 @@ class PageItem extends React.Component {
 
               );
             break;
+
+            case 6:
+            console.log("Made instagram project", this.props.data.node)
+                return (
+                  <Instagram to="#">
+                    {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                  </Instagram>
+
+                );
+              break;
             case 10:
             console.log(this.props.data)
             return(
@@ -193,14 +203,14 @@ class PageItem extends React.Component {
               </AboutUs>
             );
           }*/
-          else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"}) && this.props.data.node.excerpt == "<p>pic2</p>\n") {
+        /**  else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"}) && this.props.data.node.excerpt == "<p>pic2</p>\n") {
             console.log("Made instagram", this.props.data.node)
             return (
               <Instagram to="#">
                 {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
               </Instagram>
             );
-          }
+          }*/
          else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"})) {
            console.log("Made nothing", this.props.data.node)
             return (

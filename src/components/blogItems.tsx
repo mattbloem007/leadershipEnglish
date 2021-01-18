@@ -76,7 +76,7 @@ class BlogItem extends React.Component {
 
 export default function(props) {
   const { lang } = usePageContext();
-    console.log(props.data)
+    console.log(lang)
     let items = [];
     let fileIndex;
     if (props.data.wpgraphql.posts.edges != undefined) {
@@ -85,8 +85,8 @@ export default function(props) {
           if (props.remove && e.node.id === props.remove) return;
             fileIndex = props.data.allFile.edges.find(({node}) => {
               if (node.parent) {
-                console.log(node.parent.id)
-                if (node.parent.id == `SitePage /blog/` + e.node.slug || node.parent.id == `SitePage /{$lang}/blog/` + e.node.slug) {
+                console.log(node.parent.id, " ", `SitePage /${lang}/blog/` + e.node.slug)
+                if (node.parent.id == `SitePage /blog/` + e.node.slug || node.parent.id == `SitePage /${lang}/blog/` + e.node.slug) {
                   return node
                 }
               }
