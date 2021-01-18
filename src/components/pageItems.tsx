@@ -154,7 +154,7 @@ class PageItem extends React.Component {
           //     );
           //   break;
 
-            case 5:
+            case 12:
             console.log("Made instagram project", this.props.data.node)
                 return (
                   <Instagram to="#">
@@ -173,16 +173,16 @@ class PageItem extends React.Component {
           )
             break;
 
-            case 12:
-            console.log("Made course project", this.props.data.node)
-                return (
-                  <Courses to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
-                    {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-                    <span>{this.props.data.node.title}</span>
-                  </Courses>
-
-                );
-              break;
+            // case 12:
+            // console.log("Made course project", this.props.data.node)
+            //     return (
+            //       <Courses to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+            //         {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+            //         <span>{this.props.data.node.title}</span>
+            //       </Courses>
+            //
+            //     );
+            //   break;
 
         default:
         if (this.props.data.node.categories) {
