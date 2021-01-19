@@ -422,7 +422,6 @@ export const lock = isBrowser
     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
 
             //  language: 'zh',
-            forgotPasswordLink: 'future-eng.us.auth0.com/reset-password',
 
               auth: {
                   audience: 'https://future-eng.us.auth0.com/api/v2/',
@@ -610,7 +609,15 @@ console.log (lang)
 
 if (lang != "cn") {
   console.log("Inside us login")
-  lock.show()
+  lock.show({allowForgotPassword})
+  lock.on('authorization_error', function(error) {
+  lock.show({
+    flashMessage: {
+      type: 'error',
+      text: error.errorDescription
+    }
+  });
+});
 
 }
 else {
