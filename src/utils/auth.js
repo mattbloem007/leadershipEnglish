@@ -609,7 +609,7 @@ console.log (lang)
 
 if (lang != "cn") {
   console.log("Inside us login")
-  lock.show({allowForgotPassword})
+  lock.show({allowForgotPassword: true})
   lock.on('authorization_error', function(error) {
   lock.show({
     flashMessage: {
