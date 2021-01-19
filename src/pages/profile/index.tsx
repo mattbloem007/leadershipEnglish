@@ -1,4 +1,4 @@
-import { login, isAuthenticated, getProfile } from "../../utils/auth"
+import { login, isAuthenticated, getProfile, logout } from "../../utils/auth"
 import React from 'react'
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Layout from '../../components/layout2'
@@ -105,7 +105,23 @@ class Account extends React.Component {
 
   constructor(props) {
       super(props);
-      this.state = initialState;
+      this.state = {
+        profileCompletion: 0,
+      securityRating: 0,
+      showingField: "",
+      avatar: null,
+      avatarUrl: "",
+      firstName: "",
+      lastName: "",
+      username: "",
+      emailAddress: "",
+      performingAction: false,
+      emailVerified: false,
+      loadingAvatar: false,
+      sentVerificationEmail: false,
+      errors: null,
+      pc: props.pageContext
+    };
 
   }
 
@@ -143,6 +159,16 @@ class Account extends React.Component {
       showingField: fieldId,
     });
   };
+
+  logout = () => {
+    if (Object.entries(this.state.pc).length == 0) {
+      logout("us")
+    }
+    else {
+      logout("cn")
+    }
+
+  }
 
   hideFields = (callback) => {
     this.setState(
@@ -938,7 +964,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("first-name")}
                        >
-                         <EditIcon />
+                         {/**<EditIcon />*/}
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1018,7 +1044,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("last-name")}
                        >
-                         <EditIcon />
+                         {/**<EditIcon />*/}
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1098,7 +1124,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("username")}
                        >
-                         <EditIcon />
+                         {/**<EditIcon />*/}
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1214,7 +1240,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("email-address")}
                        >
-                         <EditIcon />
+                         {/**<EditIcon />*/}
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1259,7 +1285,7 @@ changeField = (fieldId) => {
            <Divider light />
          </Box>
 
-         {/**<ListItem>
+         <ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <DeleteForeverIcon />
@@ -1267,8 +1293,8 @@ changeField = (fieldId) => {
            </Hidden>
 
            <ListItemText
-             primary="Delete account"
-             secondary="Accounts can’t be recovered"
+             primary="Logout"
+             secondary="Logout of this account"
            />
 
            <ListItemSecondaryAction>
@@ -1276,11 +1302,12 @@ changeField = (fieldId) => {
                color="secondary"
                disabled={performingAction}
                variant="contained"
+               onClick={() => this.logout()}
              >
-               Delete
+               Logout
              </Button>
            </ListItemSecondaryAction>
-         </ListItem>*/}
+         </ListItem>
        </List>
       </Layout>
     )

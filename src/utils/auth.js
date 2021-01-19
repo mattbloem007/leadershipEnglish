@@ -507,7 +507,7 @@ export const lock = isBrowser
 
                     auth: {
                         audience: 'https://future-eng.us.auth0.com/api/v2/',
-                        redirectUrl: 'https://futureleadership.online/us/profile', //'http://localhost:8000/us/profile',
+                        redirectUrl: 'https://futureleadership.online/cn/profile', //'http://localhost:8000/us/profile',
                         responseType: 'token id_token',
                         autoParseHash: false,
                         params: {
@@ -606,7 +606,6 @@ export const login = (lang) => {
   }
 
 console.log (lang)
-
 if (lang != "cn") {
   console.log("Inside us login")
   lock.show({allowForgotPassword: true})
@@ -621,15 +620,28 @@ if (lang != "cn") {
 
 }
 else {
-  lockCn.show()
+  lockCn.show({allowForgotPassword: true})
+  lockCn.on('authorization_error', function(error) {
+  lockCn.show({
+    flashMessage: {
+      type: 'error',
+      text: error.errorDescription
+    }
+  });
+  });
 }
 
-
 }
 
-export const logout = () => {
+export const logout = (lang) => {
   localStorage.setItem("isLoggedIn", false)
-  lock.logout()
+  if (lang != "cn") {
+    lock.logout()
+  }
+  else {
+    lockCn.logout()
+  }
+
 }
 
 const setSession = (cb = () => {}) => (err, authResult) => {

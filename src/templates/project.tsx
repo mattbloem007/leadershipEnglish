@@ -8,7 +8,7 @@ import Layout from '../components/layout'
 import { Box, AnimatedBox, Button } from '../elements'
 import SEO from '../components/SEO'
 import Link from '../../Link'
-
+import { usePageContext } from '../../PageContext';
 const PBox = styled(AnimatedBox)`
   max-width: 1400px;
   margin: 0 auto;
@@ -57,6 +57,7 @@ const Project = ({ data, pageContext }) => {
   const descAnimation = useSpring({ config: config.slow, delay: 600, from: { opacity: 0 }, to: { opacity: 1 } })
   const imagesAnimation = useSpring({ config: config.slow, delay: 800, from: { opacity: 0 }, to: { opacity: 1 } })
   const {content} = pageContext
+  const { lang } = usePageContext();
 
   let isImage = false;
   if (data.file.childImageSharp) {
@@ -84,14 +85,34 @@ const Project = ({ data, pageContext }) => {
             {isImage ? <Img alt={data.file.name} key={data.file.childImageSharp.fluid.srcSet} fluid={data.file.childImageSharp.fluid} /> : null}
         </PBox>
       </Content>
-      <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
-        <h2>Sign up below to buy our courses and start learning with Future Leadership. First Class is always free</h2>
-        <PButton color="#90BDDF" py={4} px={8}>
-        <Link to="/login" key="login">
-          Sign Up
-        </Link>
-        </PButton>
-      </PBox>
+
+      {(() => {
+         if (lang != 'cn') {
+           return (
+             <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
+               <h2>Sign up below to buy our courses and start learning with Future Leadership. First Class is always free</h2>
+               <PButton color="#90BDDF" py={4} px={8}>
+               <Link to="/login" key="login">
+                 Sign Up
+               </Link>
+               </PButton>
+             </PBox>
+           )
+         } else if (lang == 'cn') {
+           return (
+             <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
+               <h2>点击“注册”购买我们的课程，开始和未来领导力一起学习！第一堂课免费。</h2>
+               <PButton color="#90BDDF" py={4} px={8}>
+               <Link to="/login" key="login">
+                 注册
+               </Link>
+               </PButton>
+              </PBox>
+           )
+         }
+       })()}
+
+
     </Layout>
   )
 }

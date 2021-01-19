@@ -174,6 +174,17 @@ class PageItemCn extends React.Component {
                 );
               break;
 
+              case 13:
+              console.log("Made contact us project", this.props.data.node)
+                  return (
+                    <Instagram to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+                      {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+                      <span>{this.props.data.node.title}</span>
+                    </Instagram>
+
+                  );
+                break;
+
         default:
         if (this.props.data.node.categories) {
           console.log(this.props.data.node.categories.nodes, _.some(this.props.data.node.categories.nodes, {"name": "photos"}))
@@ -193,14 +204,14 @@ class PageItemCn extends React.Component {
               </AboutUs>
             );
           }*/
-          else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"}) && this.props.data.node.excerpt == "<p>pic2</p>\n") {
+          /**else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"}) && this.props.data.node.excerpt == "<p>pic2</p>\n") {
             console.log("Made instagram", this.props.data.node)
             return (
               <Instagram to="#">
                 {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
               </Instagram>
             );
-          }
+          }*/
          else if (_.some(this.props.data.node.categories.nodes, {"name": "photos"})) {
            console.log("Made nothing", this.props.data.node)
             return (
