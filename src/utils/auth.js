@@ -636,10 +636,14 @@ else {
 export const logout = (lang) => {
   localStorage.setItem("isLoggedIn", false)
   if (lang != "cn") {
-    lock.logout()
+    lock.logout({
+      returnTo: 'https://futureleadership.online/'
+    })
   }
   else {
-    lockCn.logout()
+    lockCn.logout({
+      returnTo: 'https://futureleadership.online/cn/'
+    })
   }
 
 }
