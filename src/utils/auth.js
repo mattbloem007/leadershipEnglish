@@ -422,7 +422,7 @@ export const lock = isBrowser
     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
 
             //  language: 'zh',
-            forgotPasswordLink: 'https://future-eng.us.auth0.com/reset-password',
+            forgotPasswordLink,
 
               auth: {
                   audience: 'https://future-eng.us.auth0.com/api/v2/',
