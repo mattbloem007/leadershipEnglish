@@ -417,6 +417,9 @@ changeField = (fieldId) => {
     email = user.email
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
+    let element = {};
+    element.newField = "hello"
+    user.push(element)
     console.log(user)
   //  await this.fetchProducts()
   }

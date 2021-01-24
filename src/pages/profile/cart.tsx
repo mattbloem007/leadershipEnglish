@@ -21,7 +21,7 @@ const CartExample = (props) => {
 
     <Layout>
       <SEO title="Cart Example" />
-      <h1>Checkout with cart example</h1>
+      <h1>Future Leadership Offerings</h1>
 
       <CartProvider
         mode="client-only"
