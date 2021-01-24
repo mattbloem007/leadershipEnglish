@@ -1,4 +1,4 @@
-import { login, isAuthenticated, getProfile, logout } from "../../utils/auth"
+import { login, isAuthenticated, getProfile, logout, updateProfile } from "../../utils/auth"
 import React from 'react'
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Layout from '../../components/layout2'
@@ -207,6 +207,9 @@ class Account extends React.Component {
          },
          () => {
            /** API CALL AUTH TO CHANGE NAME */
+           console.log("In editing first name")
+           user = updateProfile("newFieldhere", "hello2")
+           console.log(user)
          }
        );
      }
@@ -417,8 +420,7 @@ changeField = (fieldId) => {
     email = user.email
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
-    user.newField = "hello"
-    console.log(user)
+
   //  await this.fetchProducts()
   }
 
@@ -427,8 +429,7 @@ changeField = (fieldId) => {
     email = user.email
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
-    user.newField = "hello"
-    console.log(user)
+
   }
 
 
@@ -966,7 +967,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("first-name")}
                        >
-                         {/**<EditIcon />*/}
+                         <EditIcon />
                        </IconButton>
                      </div>
                    </Tooltip>

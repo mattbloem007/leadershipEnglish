@@ -693,3 +693,17 @@ export const handleAuthentication = () => {
 export const getProfile = () => {
   return user
 }
+
+export const updateProfile = (newFieldKey, newFieldVal) => {
+  lock.getUserInfo(tokens.accessToken, function(error, profile) {
+
+    if (!error) {
+      profile['https://app.io/user_metadata'].newFieldKey = newFieldVal
+      user = profile
+    }
+    else {
+      console.log("Can't get profile", error)
+    }
+  })
+  return user
+}
