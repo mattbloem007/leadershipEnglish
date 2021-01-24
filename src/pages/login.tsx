@@ -30,7 +30,7 @@ class Login extends React.Component {
   componentWillMount() {
     user = getProfile()
     user = user['https://app.io/user_metadata']
-    console.log("user", user)
+
     if (user == undefined) {
       if (Object.entries(this.state.pc).length == 0) {
         console.log("in here undefined")
