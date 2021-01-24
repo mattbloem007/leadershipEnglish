@@ -205,10 +205,10 @@ class Account extends React.Component {
          {
            performingAction: true,
          },
-         () => {
+         async () => {
            /** API CALL AUTH TO CHANGE NAME */
            console.log("In editing first name")
-           user = updateProfile("newFieldhere", "hello2")
+           user = await updateProfile("firstName", firstName) 
            console.log(user)
          }
        );
