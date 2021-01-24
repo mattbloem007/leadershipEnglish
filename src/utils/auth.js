@@ -699,7 +699,10 @@ export const updateProfile = (newFieldKey, newFieldVal) => {
 
     if (!error) {
       profile['https://app.io/user_metadata'].newFieldKey = newFieldVal
+      console.log(profile)
       user = profile
+      user['https://app.io/user_metadata'].newFieldKey = newFieldVal
+      console.log(user)
     }
     else {
       console.log("Can't get profile", error)
