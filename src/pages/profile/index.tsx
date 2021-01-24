@@ -419,8 +419,8 @@ changeField = (fieldId) => {
     user = user['https://app.io/user_metadata']
     let element = {};
     element.newField = "hello"
-    user.push(element)
-    console.log(user)
+    user['https://app.io/user_metadata'].push(element)
+    console.log(user['https://app.io/user_metadata'])
   //  await this.fetchProducts()
   }
 
@@ -429,7 +429,10 @@ changeField = (fieldId) => {
     email = user.email
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
-
+    let element = {};
+    element.newField = "hello"
+    user['https://app.io/user_metadata'].push(element)
+    console.log(user['https://app.io/user_metadata'])
   }
 
 
