@@ -204,7 +204,8 @@ class Account extends React.Component {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"eng_level": firstName}
      //user = await updateProfile(newObj)
-     user = {...user['https://app.io/user_metadata'], ...newObj}
+     console.log(user)
+     user = {...user, ...newObj}
      console.log(user)
      await this.setStateAsync({ performingAction: false })
    }
