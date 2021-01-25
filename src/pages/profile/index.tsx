@@ -188,36 +188,57 @@ class Account extends React.Component {
     );
   };
 
-  changeFirstName = () => {
+  setStateAsync(state) {
+    return new Promise((resolve) => {
+      this.setState(state, resolve)
+    });
+}
+
+async handleChange(input) {
+
+}
+
+  changeFirstName = async () => {
    const { firstName } = this.state;
+   if (firstName === user.student_name.split(" ")[0]) {
+          return;
+   }
+   else {
+     await this.setStateAsync({ performingAction: true });
+     let newObj = {"eng_level": firstName}
+     user = updateProfile(newObj)
+     await this.setStateAsync({ performingAction: false, firstName: firstName })
+     console.log(user)
+   }
 
-   this.setState(
-     {
-       errors: null,
-     },
-     () => {
-
-       if (firstName === user.student_name.split(" ")[0]) {
-         return;
-       }
-
-       this.setState(
-         {
-           performingAction: true,
-         },
-          () => {
-           /** API CALL AUTH TO CHANGE NAME */
-           console.log("In editing first name")
-           updateProfile("firstName", firstName)
-           .then((user) => {
-             console.log(user)
-             this.setState({performingAction: false, firstName: firstName})
-           })
-
-         }
-       );
-     }
-   );
+   // this.setState(
+   //   {
+   //     errors: null,
+   //   },
+   //   () => {
+   //
+   //     if (firstName === user.student_name.split(" ")[0]) {
+   //       return;
+   //     }
+   //
+   //     this.setState(
+   //       {
+   //         performingAction: true,
+   //       },
+   //        () => {
+   //         /** API CALL AUTH TO CHANGE NAME */
+   //         console.log("In editing first name")
+   //         let newObj = {"eng_level": firstName}
+   //         updateProfile(newObj)
+   //         .then((user) => {
+   //           console.log(user)
+   //           this.setState({performingAction: false, firstName: firstName})
+   //         })
+   //
+   //       }
+   //     );
+   //   }
+   // );
  };
 
  changeLastName = () => {

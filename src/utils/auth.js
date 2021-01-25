@@ -694,11 +694,11 @@ export const getProfile = () => {
   return user
 }
 
-export const updateProfile = async (newFieldKey, newFieldVal) => {
+export const updateProfile = async (newObj) => {
   lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
-      profile['https://app.io/user_metadata'].newFieldKey = newFieldVal
+      profile = {...profile['https://app.io/user_metadata'], ...newObj}
       console.log(profile)
       user = profile
       // user['https://app.io/user_metadata'].newFieldKey = newFieldVal
