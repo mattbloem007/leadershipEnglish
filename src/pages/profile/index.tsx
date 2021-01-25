@@ -194,9 +194,6 @@ class Account extends React.Component {
     });
 }
 
-async handleChange(input) {
-
-}
 
   changeFirstName = async () => {
    const { firstName } = this.state;
@@ -206,7 +203,7 @@ async handleChange(input) {
    else {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"eng_level": firstName}
-     user = updateProfile(newObj)
+     user = await updateProfile(newObj)
      user = user['https://app.io/user_metadata']
      console.log(user)
      this.setStateAsync({ performingAction: false })

@@ -694,7 +694,7 @@ export const getProfile = () => {
   return user
 }
 
-export const updateProfile = (newObj) => {
+export const updateProfile =  (newObj) => {
   lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
