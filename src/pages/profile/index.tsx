@@ -205,11 +205,15 @@ class Account extends React.Component {
          {
            performingAction: true,
          },
-         async () => {
+          () => {
            /** API CALL AUTH TO CHANGE NAME */
            console.log("In editing first name")
-           user = await updateProfile("firstName", firstName) 
-           console.log(user)
+           updateProfile("firstName", firstName)
+           .then((user) => {
+             console.log(user)
+             this.setState({performingAction: false, firstName: firstName})
+           })
+
          }
        );
      }

@@ -694,7 +694,7 @@ export const getProfile = () => {
   return user
 }
 
-export const updateProfile = (newFieldKey, newFieldVal) => {
+export const updateProfile = async (newFieldKey, newFieldVal) => {
   lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
