@@ -207,7 +207,7 @@ async handleChange(input) {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"eng_level": firstName}
      user = updateProfile(newObj)
-     await this.setStateAsync({ performingAction: false, firstName: firstName })
+     await this.setStateAsync({ performingAction: false })
      console.log(user)
    }
 
