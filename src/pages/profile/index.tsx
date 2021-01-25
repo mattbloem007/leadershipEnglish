@@ -207,6 +207,7 @@ async handleChange(input) {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"eng_level": firstName}
      user = updateProfile(newObj)
+     user = user['https://app.io/user_metadata']
      await this.setStateAsync({ performingAction: false })
      console.log(user)
    }
