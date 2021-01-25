@@ -477,7 +477,7 @@ changeField = (fieldId) => {
       sentVerificationEmail,
       errors,
     } = this.state;
-
+    console.log(user)
     const hasFirstName = user && user.student_name.split(" ")[0];
     const hasLastName = user && user.student_name.split(" ")[1];
     const hasUsername = user && user.student_name.split;
