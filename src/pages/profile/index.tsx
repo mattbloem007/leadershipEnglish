@@ -202,12 +202,12 @@ class Account extends React.Component {
    }
    else {
      await this.setStateAsync({ performingAction: true });
-     let newObj = {"eng_level": firstName}
+     let newObj = {"student_name": firstName}
      //user = await updateProfile(newObj)
      console.log(user)
      user = {...user, ...newObj}
      console.log(user)
-     await this.setStateAsync({ performingAction: false })
+     this.setState({ performingAction: false })
    }
 
    // this.setState(

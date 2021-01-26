@@ -154,7 +154,7 @@ class PageItem extends React.Component {
           //     );
           //   break;
 
-            case 12:
+            case 8:
             console.log("Made instagram project", this.props.data.node)
                 return (
                   <Instagram to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
