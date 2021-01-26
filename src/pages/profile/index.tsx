@@ -204,40 +204,40 @@ class Account extends React.Component {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"student_name": firstName}
      //user = await updateProfile(newObj)
-     console.log(user)
-     user = {...user, ...newObj}
-     console.log(user)
-     this.setState({ performingAction: false })
+     //console.log(user)
+     //user = {...user, ...newObj}
+     //console.log(user)
+    // this.setState({ performingAction: false })
    }
 
-   // this.setState(
-   //   {
-   //     errors: null,
-   //   },
-   //   () => {
-   //
-   //     if (firstName === user.student_name.split(" ")[0]) {
-   //       return;
-   //     }
-   //
-   //     this.setState(
-   //       {
-   //         performingAction: true,
-   //       },
-   //        () => {
-   //         /** API CALL AUTH TO CHANGE NAME */
-   //         console.log("In editing first name")
-   //         let newObj = {"eng_level": firstName}
-   //         updateProfile(newObj)
-   //         .then((user) => {
-   //           console.log(user)
-   //           this.setState({performingAction: false, firstName: firstName})
-   //         })
-   //
-   //       }
-   //     );
-   //   }
-   // );
+   this.setState(
+     {
+       errors: null,
+     },
+     () => {
+
+       if (firstName === user.student_name.split(" ")[0]) {
+         return;
+       }
+
+       this.setState(
+         {
+           performingAction: true,
+         },
+          () => {
+           /** API CALL AUTH TO CHANGE NAME */
+           console.log("In editing first name")
+           let newObj = {"student_name": firstName}
+           updateProfile(newObj)
+           .then((user) => {
+             console.log(user)
+             this.setState({performingAction: false, firstName: firstName})
+           })
+
+         }
+       );
+     }
+   );
  };
 
  changeLastName = () => {

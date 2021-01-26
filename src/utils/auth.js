@@ -709,7 +709,16 @@ export const updateProfile =  (newObj) => {
       profile = {...profile['https://app.io/user_metadata'], ...newObj}
       console.log(profile)
       user = profile
-      let userId = user.subsplit("|")[1]
+      let userId = profile.subsplit("|")[1]
+      auth0.patchUserMetadata(userId, profile, function(error, prof) {
+
+        if (!error) {
+          console.log(prof)
+        }
+        else {
+          console.log("Can't get profile", error)
+        }
+      })
     }
     else {
       console.log("Can't get profile", error)
