@@ -35,10 +35,9 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(5, 38vw);
 
     grid-template-areas:
-      'first-project about-us'
-      'three-projects three-projects'
-      'three-projects three-projects'
-      'three-projects three-projects'
+      'mid4 mid5'
+      'mid6 mid'
+      'mid2 mid3'
       'instagram instagram';
   }
 
@@ -47,11 +46,9 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(6, 50vw);
 
     grid-template-areas:
-      'first-project'
-      'about-us'
-      'three-projects'
-      'three-projects'
-      'three-projects'
+      'mid4 mid5'
+      'mid6 mid'
+      'mid2 mid3'
       'instagram';
   }
 `

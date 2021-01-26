@@ -418,6 +418,8 @@ const auth = isBrowser
     })
   : {}
 
+
+
 export const lock = isBrowser
     ? new Auth0Lock('Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu', 'future-eng.us.auth0.com', {
 
@@ -429,7 +431,7 @@ export const lock = isBrowser
                   responseType: 'token id_token',
                   autoParseHash: false,
                   params: {
-                      scope: 'openid email profile'
+                      scope: 'openid email profile user_id'
                   }
               },
               additionalSignUpFields: [
@@ -511,7 +513,7 @@ export const lock = isBrowser
                         responseType: 'token id_token',
                         autoParseHash: false,
                         params: {
-                            scope: 'openid email profile'
+                            scope: 'openid email profile user_id'
                         }
                     },
                     additionalSignUpFields: [
@@ -695,14 +697,19 @@ export const getProfile = () => {
 }
 
 export const updateProfile =  (newObj) => {
+
+  const auth0 = new auth0.Management({
+    domain: "future-eng.us.auth0.com",
+    token: tokens.accessToken
+  });
+
   lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
       profile = {...profile['https://app.io/user_metadata'], ...newObj}
       console.log(profile)
       user = profile
-      // user['https://app.io/user_metadata'].newFieldKey = newFieldVal
-      // console.log(user)
+      let userId = user.subsplit("|")[1]
     }
     else {
       console.log("Can't get profile", error)

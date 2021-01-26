@@ -442,6 +442,7 @@ changeField = (fieldId) => {
   componentWillMount = async () => {
     user = getProfile()
     email = user.email
+    console.log("USER ID", user.sub.split("|")[1])
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
@@ -451,6 +452,7 @@ changeField = (fieldId) => {
   componentDidMount = () => {
     user = getProfile()
     email = user.email
+    console.log("USER ID", user.sub.split("|")[1])
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
