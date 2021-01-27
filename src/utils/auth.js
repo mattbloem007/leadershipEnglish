@@ -698,7 +698,7 @@ export const getProfile = () => {
 
 export const updateProfile =  (newObj) => {
 
-  const auth0 = new auth0.Management({
+  const auth0Manage = new auth0.Management({
     domain: "future-eng.us.auth0.com",
     token: tokens.accessToken
   });
@@ -710,7 +710,7 @@ export const updateProfile =  (newObj) => {
       console.log(profile)
       user = profile
       let userId = profile.subsplit("|")[1]
-      auth0.patchUserMetadata(userId, profile, function(error, prof) {
+      auth0Manage.patchUserMetadata(userId, profile, function(error, prof) {
 
         if (!error) {
           console.log(prof)
