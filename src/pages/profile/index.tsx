@@ -229,7 +229,7 @@ class Account extends React.Component {
            console.log("In editing first name")
            let newObj = {"student_name": firstName}
            updateProfile(newObj)
-            this.setState({performingAction: false, firstName: firstName})
+             this.setState({performingAction: false, firstName: firstName})
 
          }
        );

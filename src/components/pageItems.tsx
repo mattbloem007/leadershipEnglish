@@ -80,7 +80,9 @@ class PageItem extends React.Component {
 
     render() {
       let isImage = false;
-      console.log("Cat", this.props.title)
+      //console.log("Cat", this.props.title)
+      let user = {user_metadata: {student_name: "hello", age: "35", city: "here", gender: "male"}, email:"matt@gmail.com"}
+      console.log(JSON.stringify(user))
       if(this.props.file) {
         if (this.props.file.node.childImageSharp) {
           isImage = true;
