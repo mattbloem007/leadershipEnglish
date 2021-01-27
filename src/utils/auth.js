@@ -706,7 +706,7 @@ export const updateProfile =  (newObj) => {
   lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
-      profile = {...profile['https://app.io/user_metadata'], ...newObj}
+      profile = {...profile['https://app.io/user_metadata'], ...newObj, profile['sub']}
       console.log(profile)
       user = profile
       let userId = profile.sub.split("|")[1]
