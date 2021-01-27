@@ -709,7 +709,7 @@ export const updateProfile =  (newObj) => {
       profile = {...profile['https://app.io/user_metadata'], ...newObj}
       console.log(profile)
       user = profile
-      let userId = profile.subsplit("|")[1]
+      let userId = profile.sub.split("|")[1]
       auth0Manage.patchUserMetadata(userId, profile, function(error, prof) {
 
         if (!error) {
