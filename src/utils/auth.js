@@ -414,7 +414,7 @@ const auth = isBrowser
       clientID: "Qy7y5utJXi9uKlwT962PTeDXFTmXCJvu", //process.env.AUTH0_CLIENTID,
       redirectUri: "https://futureleadership.online/callback", //process.env.AUTH0_CALLBACK,
       responseType: "token id_token",
-      scope: "openid profile email user_metadata",
+      scope: "openid profile email update:current_user_metadata",
     })
   : {}
 
@@ -431,7 +431,7 @@ export const lock = isBrowser
                   responseType: 'token id_token',
                   autoParseHash: false,
                   params: {
-                      scope: 'openid email profile user_id'
+                      scope: 'openid email profile update:current_user_metadata'
                   }
               },
               additionalSignUpFields: [
@@ -513,7 +513,7 @@ export const lock = isBrowser
                         responseType: 'token id_token',
                         autoParseHash: false,
                         params: {
-                            scope: 'openid email profile user_id'
+                            scope: 'openid email profile update:current_user_metadata'
                         }
                     },
                     additionalSignUpFields: [
