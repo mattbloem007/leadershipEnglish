@@ -710,7 +710,7 @@ export const updateProfile =  (newObj) => {
       user = profile
       let body = {user_metadata: newObj}
       console.log(profile.sub, JSON.stringify(body))
-      auth0Manage.patchUserMetadata(profile.sub, body, function(error, prof) {
+      auth0Manage.patchUserMetadata(profile.sub, newObj, function(error, prof) {
 
         if (!error) {
           console.log(prof)
