@@ -726,8 +726,8 @@ export const updateProfile =  (newObj) => {
     }
   })
   return new Promise((resolve) => {
-    setTimeout(() => {
-            resolve(user);
-        }, 100);
+    console.log("IN HERE", user)
+    resolve(user);
+
   });
 }

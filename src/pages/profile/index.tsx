@@ -356,9 +356,13 @@ changeCountry = async () => {
  else {
    await this.setStateAsync({ performingAction: true });
    let newObj = {"country": country}
-   user = await updateProfile(newObj)
-   console.log(user)
-   await this.setStateAsync({ performingAction: false });
+   user = updateProfile(newObj)
+   .then(result => {
+     console.log("After update: ", result)
+     this.setState({performingAction: false})
+   })
+
+   // this.setStateAsync({ performingAction: false });
    //user = {...user, ...newObj}
    //console.log(user)
   // this.setState({ performingAction: false })
