@@ -241,7 +241,7 @@ class Account extends React.Component {
 
   changeFirstName = async () => {
    const { firstName } = this.state;
-   if (firstName === user.student_name.split(" ")[0]) {
+   if (firstName === user.student_name) {
           return;
    }
    else {
@@ -281,27 +281,27 @@ class Account extends React.Component {
  //   );
   };
 
- changeLastName = () => {
-  const { lastName } = this.state;
-
-  this.setState(
-    {
-      errors: null,
-    },
-    () => {
-
-      if (lastName === user.student_name.split(" ")[1]) {
-        return;
-      }
-
-      this.setState(
-        {
-          performingAction: true,
-        }
-      );
-    }
-  );
-};
+//  changeLastName = () => {
+//   const { lastName } = this.state;
+//
+//   this.setState(
+//     {
+//       errors: null,
+//     },
+//     () => {
+//
+//       if (lastName === user.student_name.split(" ")[1]) {
+//         return;
+//       }
+//
+//       this.setState(
+//         {
+//           performingAction: true,
+//         }
+//       );
+//     }
+//   );
+// };
 
 changeUsername = () => {
  const { username } = this.state;
@@ -1068,7 +1068,6 @@ changeField = (fieldId) => {
   componentWillMount = async () => {
     user = getProfile()
     email = user.email
-    console.log("USER ID", user.sub.split("|")[1])
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
@@ -1078,7 +1077,6 @@ changeField = (fieldId) => {
   componentDidMount = () => {
     user = getProfile()
     email = user.email
-    console.log("USER ID", user.sub.split("|")[1])
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
@@ -1120,9 +1118,8 @@ changeField = (fieldId) => {
       focus_area2
     } = this.state;
     console.log(user)
-    const hasFirstName = user && user.student_name.split(" ")[0];
-    const hasLastName = user && user.student_name.split(" ")[1];
-    const hasUsername = user && user.student_name.split;
+    const hasFirstName = user && user.student_name
+    const hasUsername = user && user.student_name;
     const hasCountry = user && user.country;
     const hasParentName = user && user.parent_name;
     const hasParentNo = user && user.parent_no;
@@ -1600,7 +1597,7 @@ changeField = (fieldId) => {
 
            {!hasFirstName && (
              <ListItemIcon>
-               <Tooltip title="No first name">
+               <Tooltip title="No name">
                  <WarningIcon color="error" />
                </Tooltip>
              </ListItemIcon>
@@ -1616,10 +1613,10 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.firstName
                    ? errors.firstName[0]
-                   : "Press Enter to change your first name"
+                   : "Press Enter to change your name"
                }
-               label="First name"
-               placeholder={hasFirstName && user.student_name.split(" ")[0]}
+               label="Full Name"
+               placeholder={hasFirstName && user.student_name}
                required
                type="text"
                value={firstName}
@@ -1634,11 +1631,11 @@ changeField = (fieldId) => {
            {showingField !== "first-name" && (
              <>
                <ListItemText
-                 primary="First name"
+                 primary="Full name"
                  secondary={
                    hasFirstName
-                     ? user.student_name.split(" ")[0]
-                     : "You don’t have a first name"
+                     ? user.student_name
+                     : "You don’t have a full name"
                  }
                />
 
@@ -1662,86 +1659,6 @@ changeField = (fieldId) => {
                      disabled={performingAction}
                      variant="contained"
                      onClick={() => this.showField("first-name")}
-                   >
-                     Add
-                   </Button>
-                 )}
-               </ListItemSecondaryAction>
-             </>
-           )}
-         </ListItem>
-
-         <ListItem>
-           <Hidden xsDown>
-             <ListItemIcon>
-               <PersonIcon />
-             </ListItemIcon>
-           </Hidden>
-
-           {!hasLastName && (
-             <ListItemIcon>
-               <Tooltip title="No last name">
-                 <WarningIcon color="error" />
-               </Tooltip>
-             </ListItemIcon>
-           )}
-
-           {showingField === "last-name" && (
-             <TextField
-               autoComplete="family-name"
-               autoFocus
-               disabled={performingAction}
-               error={!!(errors && errors.lastName)}
-               fullWidth
-               helperText={
-                 errors && errors.lastName
-                   ? errors.lastName[0]
-                   : "Press Enter to change your last name"
-               }
-               label="Last name"
-               placeholder={hasLastName && user.student_name.split(" ")[1]}
-               required
-               type="text"
-               value={lastName}
-               variant="filled"
-               InputLabelProps={{ required: false }}
-               onBlur={this.hideFields}
-               onKeyDown={(event) => this.handleKeyDown(event, "last-name")}
-               onChange={this.handleLastNameChange}
-             />
-           )}
-
-           {showingField !== "last-name" && (
-             <>
-               <ListItemText
-                 primary="Last name"
-                 secondary={
-                   hasLastName
-                     ? user.student_name.split(" ")[1]
-                     : "You don’t have a last name"
-                 }
-               />
-
-               <ListItemSecondaryAction>
-                 {hasLastName && (
-                   <Tooltip title="Change">
-                     <div>
-                       <IconButton
-                         disabled={performingAction}
-                         onClick={() => this.showField("last-name")}
-                       >
-                         {/**<EditIcon />*/}
-                       </IconButton>
-                     </div>
-                   </Tooltip>
-                 )}
-
-                 {!hasLastName && (
-                   <Button
-                     color="primary"
-                     disabled={performingAction}
-                     variant="contained"
-                     onClick={() => this.showField("last-name")}
                    >
                      Add
                    </Button>
