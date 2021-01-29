@@ -279,7 +279,7 @@ class Account extends React.Component {
  //       );
  //     }
  //   );
- // };
+  };
 
  changeLastName = () => {
   const { lastName } = this.state;
@@ -347,7 +347,7 @@ changeEmailAddress = () => {
  );
 };
 
-changeCountry = () => {
+changeCountry = async () => {
  const { country } = this.state;
 
  if (country === user.country) {
