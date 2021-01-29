@@ -703,31 +703,30 @@ export const updateProfile =  (newObj) => {
     token: tokens.accessToken
   });
 
-  lock.getUserInfo(tokens.accessToken, function(error, profile) {
+  auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
 
     if (!error) {
-      profile = {...profile['https://app.io/user_metadata'], ...newObj, sub: profile['sub']}
-      user = profile
-      let body = {user_metadata: newObj}
-      console.log(profile.sub, JSON.stringify(body))
-      auth0Manage.patchUserMetadata(profile.sub, newObj, function(error, prof) {
-
-        if (!error) {
-          user = prof
-          console.log(prof)
-        }
-        else {
-          console.log("Can't get profile", error)
-        }
-      })
+      user = prof
+      return new Promise((resolve) => {
+        console.log("IN HERE", user)
+        resolve(user);
+      });
     }
     else {
       console.log("Can't get profile", error)
     }
   })
-  return new Promise((resolve) => {
-    console.log("IN HERE", user)
-    resolve(user);
-
-  });
 }
+// else {
+//   console.log("Can't get profile", error)
+// }
+
+  // lock.getUserInfo(tokens.accessToken, function(error, profile) {
+  //
+  //   if (!error) {
+  //     profile = {...profile['https://app.io/user_metadata'], ...newObj, sub: profile['sub']}
+  //     user = profile
+  //     let body = {user_metadata: newObj}
+  //     console.log(profile.sub, JSON.stringify(body))
+  //     user =
+  // })
