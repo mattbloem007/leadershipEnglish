@@ -713,6 +713,7 @@ export const updateProfile =  (newObj) => {
       auth0Manage.patchUserMetadata(profile.sub, newObj, function(error, prof) {
 
         if (!error) {
+          user = prof
           console.log(prof)
         }
         else {
@@ -724,5 +725,9 @@ export const updateProfile =  (newObj) => {
       console.log("Can't get profile", error)
     }
   })
-  return user
+  return new Promise((resolve) => {
+    setTimeout(() => {
+            resolve(user);
+        }, 100);
+  });
 }
