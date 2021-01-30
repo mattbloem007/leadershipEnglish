@@ -703,21 +703,29 @@ export const updateProfile = async (newObj) => {
     token: tokens.accessToken
   });
 
-  user = await auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
+  auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
 
     if (!error) {
-       console.log("in auth0Manage ", prof)
-      return prof
+      user = prof;
     }
     else {
       console.log("Can't get profile", error)
     }
+
+    return new Promise((resolve) => {
+      console.log("IN HERE", user)
+      resolve(user);
+    });
   })
-  console.log("about to return", user)
-  return new Promise((resolve) => {
-    console.log("IN HERE", user)
-    resolve(user);
-  });
+  .then((result) => {
+    console.log("about to return", result)
+    return new Promise((resolve) => {
+      console.log("IN HERE", result)
+      resolve(user);
+    });
+
+  })
+
 }
 // else {
 //   console.log("Can't get profile", error)
