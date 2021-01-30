@@ -116,7 +116,7 @@ const initialState = {
 let user = null;
 let email = "";
 let tokens = null;
-const auth0Manage = null;
+let auth0Manage = null;
 let userId = "";
 
 class Account extends React.Component {
