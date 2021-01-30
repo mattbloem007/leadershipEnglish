@@ -696,7 +696,15 @@ export const getProfile = () => {
   return user
 }
 
-export const updateProfile = async (newObj) => {
+export const getToken = () => {
+  // return new Promise((resolve) => {
+  //   console.log("IN HERE", tokens)
+  //   resolve(tokens);
+  // });
+  return tokens
+}
+
+export const updateProfile = (newObj) => {
 
   const auth0Manage = new auth0.Management({
     domain: "future-eng.us.auth0.com",
@@ -707,22 +715,12 @@ export const updateProfile = async (newObj) => {
 
     if (!error) {
       user = prof;
+
     }
     else {
       console.log("Can't get profile", error)
     }
 
-    return new Promise((resolve) => {
-      console.log("IN HERE", user)
-      resolve(user);
-    });
-  })
-  .then((result) => {
-    console.log("about to return", result)
-    return new Promise((resolve) => {
-      console.log("IN HERE", result)
-      resolve(user);
-    });
 
   })
 

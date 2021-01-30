@@ -1,5 +1,6 @@
-import { login, isAuthenticated, getProfile, logout, updateProfile } from "../../utils/auth"
+import { login, isAuthenticated, getProfile, logout, updateProfile, getToken } from "../../utils/auth"
 import React from 'react'
+import auth0 from "auth0-js"
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Layout from '../../components/layout2'
 import SEO from '../../components/SEO'
@@ -114,6 +115,9 @@ const initialState = {
 
 let user = null;
 let email = "";
+let tokens = null;
+const auth0Manage = null;
+let userId = "";
 
 class Account extends React.Component {
 
@@ -356,11 +360,20 @@ changeCountry = async () => {
  else {
    await this.setStateAsync({ performingAction: true });
    let newObj = {"country": country}
-   user = updateProfile(newObj)
-   .then(result => {
-     console.log("After update: ", result)
-     this.setState({performingAction: false})
+   auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
+     if (!error) {
+       user = prof;
+       this.setState({performingAction: false})
+     }
+     else {
+       console.log("Can't get profile", error)
+     }
    })
+   // user = updateProfile(newObj)
+   // .then(result => {
+   //   console.log("After update: ", result)
+   //   this.setState({performingAction: false})
+   // })
 
    // this.setStateAsync({ performingAction: false });
    //user = {...user, ...newObj}
@@ -1071,7 +1084,14 @@ changeField = (fieldId) => {
 
   componentWillMount = async () => {
     user = getProfile()
+    tokens = getToken()
+    console.log("Tokens", tokens)
+    auth0Manage = new auth0.Management({
+      domain: "future-eng.us.auth0.com",
+      token: tokens.accessToken
+    });
     email = user.email
+    userId = user.sub
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
@@ -1081,6 +1101,13 @@ changeField = (fieldId) => {
   componentDidMount = () => {
     user = getProfile()
     email = user.email
+    userId = user.sub
+    tokens = getToken()
+    console.log("Tokens", tokens)
+    auth0Manage = new auth0.Management({
+      domain: "future-eng.us.auth0.com",
+      token: tokens.accessToken
+    });
     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
     user = user['https://app.io/user_metadata']
 
