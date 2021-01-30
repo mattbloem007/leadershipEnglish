@@ -696,26 +696,28 @@ export const getProfile = () => {
   return user
 }
 
-export const updateProfile =  (newObj) => {
+export const updateProfile = async (newObj) => {
 
   const auth0Manage = new auth0.Management({
     domain: "future-eng.us.auth0.com",
     token: tokens.accessToken
   });
 
-  auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
+  user = await auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
 
     if (!error) {
-      user = prof
-      return new Promise((resolve) => {
-        console.log("IN HERE", user)
-        resolve(user);
-      });
+       console.log("in auth0Manage ", prof)
+      return prof
     }
     else {
       console.log("Can't get profile", error)
     }
   })
+  console.log("about to return", user)
+  return new Promise((resolve) => {
+    console.log("IN HERE", user)
+    resolve(user);
+  });
 }
 // else {
 //   console.log("Can't get profile", error)
