@@ -693,7 +693,18 @@ export const handleAuthentication = () => {
 }
 
 export const getProfile = () => {
-  return user
+  lock.getUserInfo(tokens.accessToken, function(error, profile) {
+
+    if (!error) {
+      console.log(profile)
+      user = profile
+      return user
+    }
+    else {
+      console.log("Can't get profile", error)
+    }
+  })
+
 }
 
 export const getToken = () => {

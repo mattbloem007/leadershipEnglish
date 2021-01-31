@@ -1035,7 +1035,7 @@ changeField = (fieldId) => {
   componentWillMount = async () => {
     user = getProfile()
     tokens = getToken()
-    console.log("Tokens", tokens)
+    console.log("Tokens AND user", tokens, user)
     auth0Manage = new auth0.Management({
       domain: "future-eng.us.auth0.com",
       token: tokens.accessToken
@@ -1053,7 +1053,7 @@ changeField = (fieldId) => {
     email = user.email
     userId = user.sub
     tokens = getToken()
-    console.log("Tokens", tokens)
+    console.log("Tokens AND user", tokens, user)
     auth0Manage = new auth0.Management({
       domain: "future-eng.us.auth0.com",
       token: tokens.accessToken
