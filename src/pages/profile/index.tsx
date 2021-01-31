@@ -975,7 +975,7 @@ changeField = (fieldId) => {
     .then((result) => {
       user = result
       email = user.email
-      updateProfile = user.sub
+      userId = user.sub
       tokens = getToken()
       console.log("Tokens AND ", tokens, user)
       auth0Manage = new auth0.Management({
