@@ -716,15 +716,15 @@ export const getToken = () => {
   return tokens
 }
 
-export const updateProfile = (newObj) => {
+export const updateProfile = (userId, newObj) => {
 
   const auth0Manage = new auth0.Management({
     domain: "future-eng.us.auth0.com",
     token: tokens.accessToken
   });
-
+  console.log(userId)
   return new Promise((resolve, reject) => {
-    auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
+    auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
       if (!error) {
         user = prof;
         resolve(user)

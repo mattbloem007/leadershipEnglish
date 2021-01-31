@@ -251,7 +251,7 @@ class Account extends React.Component {
    else {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"student_name": firstName}
-     updateProfile(newObj)
+     updateProfile(userId, newObj)
      .then((res) => {
        user = res.user_metadata
        this.setState({performingAction: false})
@@ -290,7 +290,7 @@ changeUsername = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"username": username}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -307,7 +307,7 @@ changeEmailAddress = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"email": email}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -324,7 +324,7 @@ changeCountry = async () => {
  else {
    await this.setStateAsync({ performingAction: true });
    let newObj = {"country": country}
-   updateProfile(newObj)
+   updateProfile(userId, newObj)
    .then((res) => {
      user = res.user_metadata
      this.setState({performingAction: false})
@@ -367,7 +367,7 @@ changeParentName = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"parent_name": parent_name}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -384,7 +384,7 @@ changeParentNo = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"parent_no": parent_no}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -401,7 +401,7 @@ changeParentEmail = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"parent_email": parent_email}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -418,7 +418,7 @@ changePreferredContact = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"preferred_contact": preferred_contact}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -435,7 +435,7 @@ changeAltContact = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"alt_contact": alt_contact}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -452,7 +452,7 @@ changeAge = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"age": age}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -469,7 +469,7 @@ changeGrade = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"grade": grade}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -487,7 +487,7 @@ changeGender = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"gender": gender}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -504,7 +504,7 @@ changeSpecialNeeds = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"special_needs": special_needs}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -521,7 +521,7 @@ changeStudentEmail = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"student_email": student_email}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -538,7 +538,7 @@ changePreferredDays = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"preferred_days": preferred_days}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -555,7 +555,7 @@ changePreferredTime = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"preferred_time": preferred_time}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -572,7 +572,7 @@ changeFocusArea = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"focus_area": focus_area}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -589,7 +589,7 @@ changeFocusArea2 = async () => {
      else {
        await this.setStateAsync({ performingAction: true });
        let newObj = {"focus_area2": focus_area2}
-       updateProfile(newObj)
+       updateProfile(userId, newObj)
        .then((res) => {
          user = res.user_metadata
          this.setState({performingAction: false})
@@ -975,7 +975,7 @@ changeField = (fieldId) => {
     .then((result) => {
       user = result
       email = user.email
-      userId = user.sub
+      updateProfile = user.sub
       tokens = getToken()
       console.log("Tokens AND ", tokens, user)
       auth0Manage = new auth0.Management({
