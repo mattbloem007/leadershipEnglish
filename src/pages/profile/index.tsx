@@ -1859,7 +1859,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            </Hidden>
 
-           {!hasCountry && (
+           {!hasParentName && (
              <ListItemIcon>
                <Tooltip title="No Parent Name">
                  <WarningIcon color="error" />
@@ -1922,7 +1922,7 @@ changeField = (fieldId) => {
                      color="primary"
                      disabled={performingAction}
                      variant="contained"
-                     onClick={() => this.showField("parent_name")}
+                     onClick={() => this.showField("parent-name")}
                    >
                      Add
                    </Button>
