@@ -123,21 +123,8 @@ class Account extends React.Component {
 
   constructor(props) {
       super(props);
-
-      getProfile()
-      .then((result) => {
-        user = result
-        email = user.email
-        userId = user.sub
-        tokens = getToken()
-        console.log("Tokens AND ", tokens, user)
-        auth0Manage = new auth0.Management({
-          domain: "future-eng.us.auth0.com",
-          token: tokens.accessToken
-        });
-
       this.state = {
-      profileCompletion: 0,
+        profileCompletion: 0,
       securityRating: 0,
       showingField: "",
       avatar: null,
@@ -1060,15 +1047,28 @@ changeField = (fieldId) => {
   //     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
   //     user = user['https://app.io/user_metadata']
   //   })
-
-
-  //  await this.fetchProducts()
-  //}
+  //
+  //
+  // //  await this.fetchProducts()
+  // }
 
   componentDidMount = () => {
-    this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
-    user = user['https://app.io/user_metadata']
+    getProfile()
+    .then((result) => {
+      user = result
+      email = user.email
+      userId = user.sub
+      tokens = getToken()
+      console.log("Tokens AND ", tokens, user)
+      auth0Manage = new auth0.Management({
+        domain: "future-eng.us.auth0.com",
+        token: tokens.accessToken
+      });
+      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
+      user = user['https://app.io/user_metadata']
     })
+
+
   }
 
 
@@ -1124,6 +1124,8 @@ changeField = (fieldId) => {
     const hasPreferredTime = user && user.preferred_time;
     const hasFocusArea = user && user.focus_area;
     const hasFocusArea2 = user && user.focus_area2;
+
+    console.log(avatarUrl)
 
     return (
       <Layout color="#90BDDF">
