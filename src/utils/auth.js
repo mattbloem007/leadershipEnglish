@@ -723,18 +723,21 @@ export const updateProfile = (newObj) => {
     token: tokens.accessToken
   });
 
-  auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
+  return new Promise((resolve, reject) => {
+    auth0Manage.patchUserMetadata(user.sub, newObj, function(error, prof) {
+      if (!error) {
+        user = prof;
+        resolve(user)
+      }
+      else {
+        reject(error)
+      }
 
-    if (!error) {
-      user = prof;
 
-    }
-    else {
-      console.log("Can't get profile", error)
-    }
-
-
+    })
   })
+
+
 
 }
 // else {

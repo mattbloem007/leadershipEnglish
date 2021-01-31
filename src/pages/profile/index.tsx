@@ -251,15 +251,11 @@ class Account extends React.Component {
    else {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"student_name": firstName}
-     auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
-       if (!error) {
-         user = prof.user_metadata;
-       }
-       else {
-         console.log("Can't get profile", error)
-       }
+     updateProfile(newObj)
+     .then((res) => {
+       user = res.user_metadata
+       this.setState({performingAction: false})
      })
-     this.setState({performingAction: false})
    }
   };
 
@@ -285,48 +281,38 @@ class Account extends React.Component {
 //   );
 // };
 
-changeUsername = () => {
+changeUsername = async () => {
  const { username } = this.state;
 
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
-
-     if (username === user.student_name) {
+  if (username === user.student_name) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"username": username}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeEmailAddress = () => {
+changeEmailAddress = async () => {
  const { email } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (email === email) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"email": email}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
 changeCountry = async () => {
@@ -338,324 +324,277 @@ changeCountry = async () => {
  else {
    await this.setStateAsync({ performingAction: true });
    let newObj = {"country": country}
-   auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
-     if (!error) {
-       user = prof.user_metadata;
-     }
-     else {
-       console.log("Can't get profile", error)
-     }
+   updateProfile(newObj)
+   .then((res) => {
+     user = res.user_metadata
+     this.setState({performingAction: false})
    })
-   this.setState({performingAction: false})
+   // auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
+   //   if (!error) {
+   //     user = prof.user_metadata;
+   //   }
+   //   else {
+   //     console.log("Can't get profile", error)
+   //   }
+   // })
+   // getProfile()
+   // .then((result) => {
+   //   user = result
+   //   email = user.email
+   //   userId = user.sub
+   //   tokens = getToken()
+   //   console.log("Tokens AND ", tokens, user)
+   //   auth0Manage = new auth0.Management({
+   //     domain: "future-eng.us.auth0.com",
+   //     token: tokens.accessToken
+   //   });
+   //   let pic = user.picture
+   //   let veri = user.email_verified
+   //   user = user['https://app.io/user_metadata']
+   //   this.setState({avatarUrl: pic, emailAddress: email, emailVerified: veri})
+   //
+   // })
  }
 };
 
-changeParentName = () => {
+changeParentName = async () => {
  const { parent_name } = this.state;
 
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (parent_name === user.parent_name) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"parent_name": parent_name}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeParentNo = () => {
+changeParentNo = async () => {
  const { parent_no } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (parent_no === user.parent_no) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"parent_no": parent_no}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeParentEmail = () => {
+changeParentEmail = async () => {
  const { parent_email } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (parent_email === user.parent_email) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"parent_email": parent_email}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changePreferredContact = () => {
+changePreferredContact = async () => {
  const { preferred_contact } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (preferred_contact === user.preferred_contact) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"preferred_contact": preferred_contact}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeAltContact = () => {
+changeAltContact = async () => {
  const { alt_contact } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (alt_contact === user.alt_contact) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"alt_contact": alt_contact}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeAge = () => {
+changeAge = async () => {
  const { age } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (age === user.age) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"age": age}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeGrade = () => {
+changeGrade = async () => {
  const { grade } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (grade === user.grade) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"grade": grade}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeGender = () => {
+changeGender = async () => {
  const { gender } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (gender === user.gender) {
        return;
      }
 
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"gender": gender}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeSpecialNeeds = () => {
+changeSpecialNeeds = async () => {
  const { special_needs } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (special_needs === user.special_needs) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"special_needs": special_needs}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeStudentEmail = () => {
+changeStudentEmail = async () => {
  const { student_email } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (student_email === user.student_email) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"student_email": student_email}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changePreferredDays = () => {
+changePreferredDays = async () => {
  const { preferred_days } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (preferred_days === user.preferred_days) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"preferred_days": preferred_days}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changePreferredTime = () => {
+changePreferredTime = async () => {
  const { preferred_time } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (preferred_time === user.preferred_time) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"preferred_time": preferred_time}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeFocusArea = () => {
+changeFocusArea = async () => {
  const { focus_area } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (focus_area === user.focus_area) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"focus_area": focus_area}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
-changeFocusArea2 = () => {
+changeFocusArea2 = async () => {
  const { focus_area2 } = this.state;
-
- this.setState(
-   {
-     errors: null,
-   },
-   () => {
 
      if (focus_area2 === user.focus_area2) {
        return;
      }
-
-     this.setState(
-       {
-         performingAction: true,
-       }
-     );
-   }
- );
+     else {
+       await this.setStateAsync({ performingAction: true });
+       let newObj = {"focus_area2": focus_area2}
+       updateProfile(newObj)
+       .then((res) => {
+         user = res.user_metadata
+         this.setState({performingAction: false})
+       })
+     }
 };
 
 changeField = (fieldId) => {
@@ -1031,27 +970,6 @@ changeField = (fieldId) => {
     });
   };
 
-
-  // componentWillMount = async () => {
-  //   getProfile()
-  //   .then((result) => {
-  //     user = result
-  //     tokens = getToken()
-  //     console.log("Tokens AND user", tokens, user)
-  //     auth0Manage = new auth0.Management({
-  //       domain: "future-eng.us.auth0.com",
-  //       token: tokens.accessToken
-  //     });
-  //     email = user.email
-  //     userId = user.sub
-  //     this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
-  //     user = user['https://app.io/user_metadata']
-  //   })
-  //
-  //
-  // //  await this.fetchProducts()
-  // }
-
   componentDidMount = () => {
     getProfile()
     .then((result) => {
@@ -1064,8 +982,10 @@ changeField = (fieldId) => {
         domain: "future-eng.us.auth0.com",
         token: tokens.accessToken
       });
+      let pic = user.picture
+      let veri = user.email_verified
       user = user['https://app.io/user_metadata']
-      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
+      this.setState({avatarUrl: pic, emailAddress: email, emailVerified: veri})
 
     })
 
@@ -1125,8 +1045,6 @@ changeField = (fieldId) => {
     const hasPreferredTime = user && user.preferred_time;
     const hasFocusArea = user && user.focus_area;
     const hasFocusArea2 = user && user.focus_area2;
-
-    console.log(avatarUrl)
 
     return (
       <Layout color="#90BDDF">
