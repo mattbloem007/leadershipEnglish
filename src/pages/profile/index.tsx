@@ -363,12 +363,13 @@ changeCountry = async () => {
    auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
      if (!error) {
        user = prof;
-       setStateAsync({performingAction: false})
      }
      else {
        console.log("Can't get profile", error)
      }
    })
+   this.setState({performingAction: false})
+
    // user = updateProfile(newObj)
    // .then(result => {
    //   console.log("After update: ", result)
