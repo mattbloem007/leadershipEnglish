@@ -251,38 +251,16 @@ class Account extends React.Component {
    else {
      await this.setStateAsync({ performingAction: true });
      let newObj = {"student_name": firstName}
-     user = await updateProfile(newObj)
-     console.log(user)
-     //user = {...user, ...newObj}
-     //console.log(user)
-    // this.setState({ performingAction: false })
+     auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
+       if (!error) {
+         user = prof.user_metadata;
+       }
+       else {
+         console.log("Can't get profile", error)
+       }
+     })
+     this.setState({performingAction: false})
    }
-
- //   this.setState(
- //     {
- //       errors: null,
- //     },
- //     () => {
- //
- //       if (firstName === user.student_name.split(" ")[0]) {
- //         return;
- //       }
- //
- //       this.setState(
- //         {
- //           performingAction: true,
- //         },
- //          () => {
- //           /** API CALL AUTH TO CHANGE NAME */
- //           console.log("In editing first name")
- //           let newObj = {"student_name": firstName}
- //           updateProfile(newObj)
- //             this.setState({performingAction: false, firstName: firstName})
- //
- //         }
- //       );
- //     }
- //   );
   };
 
 //  changeLastName = () => {
@@ -362,43 +340,14 @@ changeCountry = async () => {
    let newObj = {"country": country}
    auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
      if (!error) {
-       user = prof;
+       user = prof.user_metadata;
      }
      else {
        console.log("Can't get profile", error)
      }
    })
    this.setState({performingAction: false})
-
-   // user = updateProfile(newObj)
-   // .then(result => {
-   //   console.log("After update: ", result)
-   //   this.setState({performingAction: false})
-   // })
-
-   // this.setStateAsync({ performingAction: false });
-   //user = {...user, ...newObj}
-   //console.log(user)
-  // this.setState({ performingAction: false })
  }
-
- // this.setState(
- //   {
- //     errors: null,
- //   },
- //   () => {
- //
- //     if (country === user.country) {
- //       return;
- //     }
- //
- //     this.setState(
- //       {
- //         performingAction: true,
- //       }
- //     );
- //   }
- // );
 };
 
 changeParentName = () => {
