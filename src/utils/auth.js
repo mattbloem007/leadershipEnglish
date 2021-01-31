@@ -692,18 +692,11 @@ export const handleAuthentication = () => {
 //  auth.parseHash(setSession())
 }
 
-export const getProfile = () => {
-  user = lock.getUserInfo(tokens.accessToken, function(error, profile) {
+export const getLock = () => {
+  return lock
+}
 
-    if (!error) {
-      console.log(profile)
-      return profile
-    }
-    else {
-      console.log("Can't get profile", error)
-    }
-  })
-  console.log("User", user)
+export const getProfile = () => {
   return user
 
 }

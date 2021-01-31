@@ -1,4 +1,4 @@
-import { login, isAuthenticated, getProfile, logout, updateProfile, getToken } from "../../utils/auth"
+import { login, isAuthenticated, getProfile, logout, updateProfile, getToken, getLock } from "../../utils/auth"
 import React from 'react'
 import auth0 from "auth0-js"
 import { withStyles, makeStyles } from "@material-ui/core/styles";
@@ -118,6 +118,7 @@ let email = "";
 let tokens = null;
 let auth0Manage = null;
 let userId = "";
+let lock = null;
 
 class Account extends React.Component {
 
@@ -1033,9 +1034,19 @@ changeField = (fieldId) => {
 
 
   componentWillMount = async () => {
-    user = getProfile()
+    lock = getLock()
     tokens = getToken()
-    console.log("Tokens AND user", tokens, user)
+    console.log("Tokens AND user", tokens)
+    user = await lock.getUserInfo(tokens.accessToken, function(error, profile) {
+
+      if (!error) {
+        console.log(profile)
+        return profile
+      }
+      else {
+        console.log("Can't get profile", error)
+      }
+    })
     auth0Manage = new auth0.Management({
       domain: "future-eng.us.auth0.com",
       token: tokens.accessToken
@@ -1048,8 +1059,18 @@ changeField = (fieldId) => {
   //  await this.fetchProducts()
   }
 
-  componentDidMount = () => {
-    user = getProfile()
+  componentDidMount = async () => {
+    lock = getLock()
+    user = await lock.getUserInfo(tokens.accessToken, function(error, profile) {
+
+      if (!error) {
+        console.log(profile)
+        return profile
+      }
+      else {
+        console.log("Can't get profile", error)
+      }
+    })
     email = user.email
     userId = user.sub
     tokens = getToken()
