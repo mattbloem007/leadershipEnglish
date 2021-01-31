@@ -697,15 +697,22 @@ export const getLock = () => {
 }
 
 export const getProfile = () => {
-  return user
+  return new Promise((resolve, reject) => {
+    lock.getUserInfo(tokens.accessToken, function(error, profile) {
+      if (!error) {
+        console.log(profile)
+        user = profile
+        resolve(user)
+      }
+      else {
+        reject(error)
+      }
+    })
+  })
 
 }
 
 export const getToken = () => {
-  // return new Promise((resolve) => {
-  //   console.log("IN HERE", tokens)
-  //   resolve(tokens);
-  // });
   return tokens
 }
 
