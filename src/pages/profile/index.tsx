@@ -1036,17 +1036,18 @@ changeField = (fieldId) => {
     getProfile()
     .then((result) => {
       user = result
+      tokens = getToken()
+      console.log("Tokens AND user", tokens, user)
+      auth0Manage = new auth0.Management({
+        domain: "future-eng.us.auth0.com",
+        token: tokens.accessToken
+      });
+      email = user.email
+      userId = user.sub
+      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
+      user = user['https://app.io/user_metadata']
     })
-    tokens = getToken()
-    console.log("Tokens", tokens)
-    auth0Manage = new auth0.Management({
-      domain: "future-eng.us.auth0.com",
-      token: tokens.accessToken
-    });
-    email = user.email
-    userId = user.sub
-    this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
-    user = user['https://app.io/user_metadata']
+
 
   //  await this.fetchProducts()
   }
@@ -1055,17 +1056,18 @@ changeField = (fieldId) => {
     getProfile()
     .then((result) => {
       user = result
+      email = user.email
+      userId = user.sub
+      tokens = getToken()
+      console.log("Tokens AND ", tokens, user)
+      auth0Manage = new auth0.Management({
+        domain: "future-eng.us.auth0.com",
+        token: tokens.accessToken
+      });
+      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
+      user = user['https://app.io/user_metadata']
     })
-    email = user.email
-    userId = user.sub
-    tokens = getToken()
-    console.log("Tokens AND ", tokens, user)
-    auth0Manage = new auth0.Management({
-      domain: "future-eng.us.auth0.com",
-      token: tokens.accessToken
-    });
-    this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
-    user = user['https://app.io/user_metadata']
+
 
   }
 
