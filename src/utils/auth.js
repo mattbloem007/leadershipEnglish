@@ -692,12 +692,11 @@ export const handleAuthentication = () => {
 //  auth.parseHash(setSession())
 }
 
-export const getProfile = async () => {
-  user = await lock.getUserInfo(tokens.accessToken, function(error, profile) {
+export const getProfile = () => {
+  user = lock.getUserInfo(tokens.accessToken, function(error, profile) {
 
     if (!error) {
       console.log(profile)
-      user = profile
       return profile
     }
     else {
