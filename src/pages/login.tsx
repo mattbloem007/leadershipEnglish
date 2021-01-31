@@ -29,6 +29,7 @@ class Login extends React.Component {
 
   componentWillMount() {
     user = getProfile()
+    console.log(user)
     user = user['https://app.io/user_metadata']
 
     if (user == undefined) {
