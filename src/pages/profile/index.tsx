@@ -1064,8 +1064,9 @@ changeField = (fieldId) => {
         domain: "future-eng.us.auth0.com",
         token: tokens.accessToken
       });
-      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
       user = user['https://app.io/user_metadata']
+      this.setState({avatarUrl: user.picture, emailAddress: email, emailVerified: user.email_verified})
+
     })
 
 
