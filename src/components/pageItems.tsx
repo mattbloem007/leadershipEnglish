@@ -24,8 +24,7 @@ const Area = styled(animated.div)`
     grid-template-rows: 35vw 30vw 30vw 25vw;
 
     grid-template-areas:
-      'first-project first-project class class'
-      'mid mid about-us about-us'
+      'first-project first-project first-project first-project'
       'mid mid about-us about-us'
       'instagram instagram instagram instagram';
   }
@@ -35,7 +34,7 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(5, 38vw);
 
     grid-template-areas:
-      'first-project class'
+      'first-project first-project'
       'mid about-us'
       'mid about-us'
       'instagram instagram';

@@ -153,7 +153,29 @@ class Account extends React.Component {
       loadingAvatar: false,
       sentVerificationEmail: false,
       errors: null,
-      pc: props.pageContext
+      pc: props.pageContext,
+      labelName: "Student Name",
+      labelUser: "Username",
+      labelEmail: "E-Mail Address",
+      labelSignIn: "Signed In",
+      labelLogout: "Logout",
+      labelLogoutAcc: "Logout of this account",
+      labelCountry: "Country",
+      labelPName: "Parent Name",
+      labelPNo: "Parent Number",
+      labelPemail: "Parent Email",
+      labelPrefCont: "Preferred way of contact (phone or email)",
+      labelAltCont: "Alternative contact and email",
+      labelAge: "Student Age",
+      labelGrade: "Student Grade",
+      labelGender: "Student Gender",
+      labelSpecNeeds: "Does your student have any special education needs that we should consider? If yes, what are their needs?",
+      labelStudEmail: "Student Email (if over 18 years of age)",
+      labelPrefDays: "Preferred class days of the week for our monthly package",
+      labelPrefTime: "Preferred class time of the day, EST Boston/New York city",
+      langCn: false,
+      langUs: true
+
     };
 
   }
@@ -329,31 +351,6 @@ changeCountry = async () => {
      user = res.user_metadata
      this.setState({performingAction: false})
    })
-   // auth0Manage.patchUserMetadata(userId, newObj, function(error, prof) {
-   //   if (!error) {
-   //     user = prof.user_metadata;
-   //   }
-   //   else {
-   //     console.log("Can't get profile", error)
-   //   }
-   // })
-   // getProfile()
-   // .then((result) => {
-   //   user = result
-   //   email = user.email
-   //   userId = user.sub
-   //   tokens = getToken()
-   //   console.log("Tokens AND ", tokens, user)
-   //   auth0Manage = new auth0.Management({
-   //     domain: "future-eng.us.auth0.com",
-   //     token: tokens.accessToken
-   //   });
-   //   let pic = user.picture
-   //   let veri = user.email_verified
-   //   user = user['https://app.io/user_metadata']
-   //   this.setState({avatarUrl: pic, emailAddress: email, emailVerified: veri})
-   //
-   // })
  }
 };
 
@@ -971,6 +968,31 @@ changeField = (fieldId) => {
   };
 
   componentDidMount = () => {
+    if (Object.entries(this.state.pc).length != 0) {
+      this.setState({
+      labelName: "学生英文名",
+      labelUser: "用户名",
+      labelEmail: "邮件地址",
+      labelSignIn: "已登入",
+      labelLogout: "退出",
+      labelLogoutAcc: "退出本账号",
+      labelCountry: "国家",
+      labelPName: "家长姓名",
+      labelPNo: "家长微信号",
+      labelPemail: "家长电子邮件",
+      labelPrefCont: "首选的联系方式 （微信或电子邮件）",
+      labelAltCont: "备用联系人联系方式",
+      labelAge: "学生年龄",
+      labelGrade: "学生年级",
+      labelGender: "学生性别",
+      labelSpecNeeds: "学生英文水平（初级，中级，或高级）",
+      labelStudEmail: "学生电子邮件（18岁以上学生）",
+      labelPrefDays: "首选的上课日期（每周的哪几天）",
+      labelPrefTime: "首选的上课时间（北京时间）",
+      langCn: true,
+      langUs: false
+    })
+    }
     getProfile()
     .then((result) => {
       user = result
@@ -1025,7 +1047,28 @@ changeField = (fieldId) => {
       preferred_days,
       preferred_time,
       focus_area,
-      focus_area2
+      focus_area2,
+      labelName,
+      labelUser,
+      labelEmail,
+      labelSignIn,
+      labelLogout,
+      labelLogoutAcc,
+      labelCountry,
+      labelPName,
+      labelPNo,
+      labelPemail,
+      labelPrefCont,
+      labelAltCont,
+      labelAge,
+      labelGrade,
+      labelGender,
+      labelSpecNeeds,
+      labelStudEmail,
+      labelPrefDays,
+      labelPrefTime,
+      langCn,
+      langUs
     } = this.state;
     console.log(user)
     const hasFirstName = user && user.student_name
@@ -1523,7 +1566,7 @@ changeField = (fieldId) => {
                    ? errors.firstName[0]
                    : "Press Enter to change your name"
                }
-               label="Full Name"
+               label={labelName}
                placeholder={hasFirstName && user.student_name}
                required
                type="text"
@@ -1539,7 +1582,7 @@ changeField = (fieldId) => {
            {showingField !== "first-name" && (
              <>
                <ListItemText
-                 primary="Full name"
+                 primary={labelName}
                  secondary={
                    hasFirstName
                      ? user.student_name
@@ -1603,7 +1646,7 @@ changeField = (fieldId) => {
                    ? errors.username[0]
                    : "Press Enter to change your username"
                }
-               label="Username"
+               label={labelUser}
                placeholder={hasUsername && user.student_name}
                required
                type="text"
@@ -1619,7 +1662,7 @@ changeField = (fieldId) => {
            {showingField !== "username" && (
              <>
                <ListItemText
-                 primary="Username"
+                 primary={labelUser}
                  secondary={
                    hasUsername
                      ? user.student_name
@@ -1701,7 +1744,7 @@ changeField = (fieldId) => {
                    ? errors.emailAddress[0]
                    : "Press Enter to change your e-mail address"
                }
-               label="E-mail address"
+               label={labelEmail}
                placeholder={emailAddress}
                required
                type="email"
@@ -1719,7 +1762,7 @@ changeField = (fieldId) => {
            {showingField !== "email-address" && (
              <>
                <ListItemText
-                 primary="E-mail address"
+                 primary={labelEmail}
                  secondary={
                    emailAddress ? emailAddress : "You don’t have an e-mail address"
                  }
@@ -1799,7 +1842,7 @@ changeField = (fieldId) => {
                    ? errors.country[0]
                    : "Press Enter to change your country"
                }
-               label="Country"
+               label={labelCountry}
                placeholder={hasCountry && user.country}
                required
                type="text"
@@ -1815,7 +1858,7 @@ changeField = (fieldId) => {
            {showingField !== "country" && (
              <>
                <ListItemText
-                 primary="Country"
+                 primary={labelCountry}
                  secondary={
                    hasCountry
                      ? user.country
@@ -1879,7 +1922,7 @@ changeField = (fieldId) => {
                    ? errors.parent_name[0]
                    : "Press Enter to change your parent name"
                }
-               label="Parent Name"
+               label={labelPName}
                placeholder={hasParentName && user.parent_name}
                required
                type="text"
@@ -1895,7 +1938,7 @@ changeField = (fieldId) => {
            {showingField !== "parent-name" && (
              <>
                <ListItemText
-                 primary="Parent Name"
+                 primary={labelPName}
                  secondary={
                    hasParentName
                      ? user.parent_name
@@ -1959,7 +2002,7 @@ changeField = (fieldId) => {
                    ? errors.parent_email[0]
                    : "Press Enter to change your parent email"
                }
-               label="Parent Email"
+               label={labelPemail}
                placeholder={hasParentEmail && user.parent_email}
                required
                type="text"
@@ -1975,7 +2018,7 @@ changeField = (fieldId) => {
            {showingField !== "parent-email" && (
              <>
                <ListItemText
-                 primary="Parent Email"
+                 primary={labelPemail}
                  secondary={
                    hasParentEmail
                      ? user.parent_email
@@ -2039,7 +2082,7 @@ changeField = (fieldId) => {
                    ? errors.preferred_contact[0]
                    : "Press Enter to change your preferred contact"
                }
-               label="Preferred Contact"
+               label={labelPrefCont}
                placeholder={hasPreferredContact && user.preferred_contact}
                required
                type="text"
@@ -2055,7 +2098,7 @@ changeField = (fieldId) => {
            {showingField !== "preferred-contact" && (
              <>
                <ListItemText
-                 primary="Preferred Contact"
+                 primary={labelPrefCont}
                  secondary={
                    hasPreferredContact
                      ? user.preferred_contact
@@ -2119,7 +2162,7 @@ changeField = (fieldId) => {
                    ? errors.alt_contact[0]
                    : "Press Enter to change your alternative contact"
                }
-               label="Alternative Contact"
+               label={labelAltCont}
                placeholder={hasAltContact && user.alt_contact}
                required
                type="text"
@@ -2135,7 +2178,7 @@ changeField = (fieldId) => {
            {showingField !== "alt-contact" && (
              <>
                <ListItemText
-                 primary="Alternative Contact"
+                 primary={labelAltCont}
                  secondary={
                    hasAltContact
                      ? user.alt_contact
@@ -2199,7 +2242,7 @@ changeField = (fieldId) => {
                    ? errors.age[0]
                    : "Press Enter to change your age"
                }
-               label="Age"
+               label={labelAge}
                placeholder={hasAge && user.age}
                required
                type="text"
@@ -2215,7 +2258,7 @@ changeField = (fieldId) => {
            {showingField !== "age" && (
              <>
                <ListItemText
-                 primary="Age"
+                 primary={labelAge}
                  secondary={
                    hasAge
                      ? user.age
@@ -2279,7 +2322,7 @@ changeField = (fieldId) => {
                    ? errors.grade[0]
                    : "Press Enter to change your grade"
                }
-               label="Grade"
+               label={labelGrade}
                placeholder={hasGrade && user.grade}
                required
                type="text"
@@ -2295,7 +2338,7 @@ changeField = (fieldId) => {
            {showingField !== "grade" && (
              <>
                <ListItemText
-                 primary="Grade"
+                 primary={labelGrade}
                  secondary={
                    hasGrade
                      ? user.grade
@@ -2359,7 +2402,7 @@ changeField = (fieldId) => {
                    ? errors.gender[0]
                    : "Press Enter to change your gender"
                }
-               label="Gender"
+               label={labelGender}
                placeholder={hasGender && user.gender}
                required
                type="text"
@@ -2375,7 +2418,7 @@ changeField = (fieldId) => {
            {showingField !== "gender" && (
              <>
                <ListItemText
-                 primary="Gender"
+                 primary={labelGender}
                  secondary={
                    hasGender
                      ? user.gender
@@ -2439,7 +2482,7 @@ changeField = (fieldId) => {
                    ? errors.special_needs[0]
                    : "Press Enter to change your special needs"
                }
-               label="Does your student have any special education needs that we should consider? If yes, what are their needs?"
+               label={labelSpecNeeds}
                placeholder={hasSpecialNeeds && user.special_needs}
                required
                type="text"
@@ -2455,7 +2498,7 @@ changeField = (fieldId) => {
            {showingField !== "special-needs" && (
              <>
                <ListItemText
-                 primary="Does your student have any special education needs that we should consider? If yes, what are their needs?"
+                 primary={labelSpecNeeds}
                  secondary={
                    hasSpecialNeeds
                      ? user.special_needs
@@ -2519,7 +2562,7 @@ changeField = (fieldId) => {
                    ? errors.student_email[0]
                    : "Press Enter to change your student email"
                }
-               label="Student Email (if over 18 years of age)"
+               label={labelStudEmail}
                placeholder={hasStudentEmail && user.student_email}
                required
                type="text"
@@ -2535,7 +2578,7 @@ changeField = (fieldId) => {
            {showingField !== "student-email" && (
              <>
                <ListItemText
-                 primary="Student Email (if over 18 years of age)"
+                 primary={labelStudEmail}
                  secondary={
                    hasStudentEmail
                      ? user.student_email
@@ -2599,7 +2642,7 @@ changeField = (fieldId) => {
                    ? errors.preferred_days[0]
                    : "Press Enter to change your preferred days"
                }
-               label="Preferred class days of the week for our monthly package"
+               label={labelPrefDays}
                placeholder={hasPreferredDays && user.preferred_days}
                required
                type="text"
@@ -2615,7 +2658,7 @@ changeField = (fieldId) => {
            {showingField !== "preferred-days" && (
              <>
                <ListItemText
-                 primary="Preferred class days of the week for our monthly package"
+                 primary={labelPrefDays}
                  secondary={
                    hasPreferredDays
                      ? user.preferred_days
@@ -2679,7 +2722,7 @@ changeField = (fieldId) => {
                    ? errors.preferred_time[0]
                    : "Press Enter to change your preferred time"
                }
-               label="Preferred class time of the day, EST Boston/New York city."
+               label={labelPrefTime}
                placeholder={hasPreferredTime && user.preferred_time}
                required
                type="text"
@@ -2695,7 +2738,7 @@ changeField = (fieldId) => {
            {showingField !== "preferred-time" && (
              <>
                <ListItemText
-                 primary="Preferred class time of the day, EST Boston/New York city."
+                 primary={labelPrefTime}
                  secondary={
                    hasPreferredTime
                      ? user.preferred_time
@@ -2747,7 +2790,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            )}
 
-           {showingField === "focus-area" && (
+           {langUs && showingField === "focus-area" && (
              <TextField
                autoComplete="focus area"
                autoFocus
@@ -2772,7 +2815,7 @@ changeField = (fieldId) => {
              />
            )}
 
-           {showingField !== "focus-area" && (
+           {langUs && showingField !== "focus-area" && (
              <>
                <ListItemText
                  primary="For students on Independent Education Plans, describe the student’s focus areas of need."

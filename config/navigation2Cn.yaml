@@ -1,0 +1,6 @@
+- name: "个人资料"
+  link: "/profile"
+- name: "我的课程"
+  link: "/profile/my-classes"
+- name: "购买课程"
+  link: "/profile/cart"

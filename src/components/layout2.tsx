@@ -10,6 +10,7 @@ import reset from '../styles/reset'
 import Logo from './logo'
 import LanguagePicker from './language-picker'
 import { Router } from "@reach/router"
+import { usePageContext } from '../../PageContext';
 
 import CartExample from '../pages/profile/cart'
 import Account from '../pages/profile/index'
@@ -225,6 +226,7 @@ interface QueryResult {
 
 const Layout = ({ children, color }: LayoutProps) => {
   const data: QueryResult = useStaticQuery(query)
+  const { lang } = usePageContext();
 
   return (
     <ThemeProvider theme={theme}>
@@ -252,11 +254,25 @@ const Layout = ({ children, color }: LayoutProps) => {
                 alignItems="flex-start"
               >
               <LanguagePicker />
-                {data.navigation.nodes.map((item) => (
-                  <Link to={item.link} key={item.name}>
-                    {item.name}
-                  </Link>
-                ))}
+              {(() => {
+                 if (lang != 'cn') {
+                   return (
+                     data.navigation.nodes.map((item) => (
+                     <Link to={item.link} key={item.name}>
+                       {item.name}
+                     </Link>
+                   ))
+                   )
+                 } else if (lang == 'cn') {
+                   return (
+                     data.navigationCN.nodes.map((item) => (
+                     <Link to={item.link} key={item.name}>
+                       {item.name}
+                     </Link>
+                   ))
+                   )
+                 }
+               })()}
               </Nav>
               <Router>
                 <Account path="/profile" />
@@ -285,6 +301,13 @@ Layout.defaultProps = defaultProps
 const query = graphql`
   query Layout2 {
     navigation: allNavigation2Yaml {
+      nodes {
+        name
+        link
+      }
+    }
+
+    navigationCN: allNavigation2CnYaml {
       nodes {
         name
         link
