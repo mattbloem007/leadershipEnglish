@@ -2870,7 +2870,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            )}
 
-           {showingField === "focus-area2" && (
+           {langUs && showingField === "focus-area2" && (
              <TextField
                autoComplete="focus area"
                autoFocus
@@ -2895,7 +2895,7 @@ changeField = (fieldId) => {
              />
            )}
 
-           {showingField !== "focus-area2" && (
+           {langUs && showingField !== "focus-area2" && (
              <>
                <ListItemText
                  primary="For students of English as a Second Language, describe the student’s focus areas."
@@ -2944,13 +2944,13 @@ changeField = (fieldId) => {
 
            <Hidden xsDown>
              <ListItemText
-               primary="Signed in"
+               primary={labelSignIn}
              />
            </Hidden>
 
            <Hidden smUp>
              <ListItemText
-               primary="Signed in"
+               primary={labelSignIn}
              />
            </Hidden>
          </ListItem>
@@ -2967,8 +2967,8 @@ changeField = (fieldId) => {
            </Hidden>
 
            <ListItemText
-             primary="Logout"
-             secondary="Logout of this account"
+             primary={labelLogout}
+             secondary={labelLogoutAcc}
            />
 
            <ListItemSecondaryAction>
@@ -2978,7 +2978,7 @@ changeField = (fieldId) => {
                variant="contained"
                onClick={() => this.logout()}
              >
-               Logout
+               {labelLogout}
              </Button>
            </ListItemSecondaryAction>
          </ListItem>
