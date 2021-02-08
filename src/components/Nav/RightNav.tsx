@@ -16,7 +16,7 @@ const Ul = styled.ul`
 
   @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
     flex-flow: column nowrap;
-    background-color: #0D2538;
+    background-color: #4c8fc3;
     position: fixed;
     text-color: white;
     transform: ${({ open }) => open ? 'translateX(0)' : 'translateX(100%)'};

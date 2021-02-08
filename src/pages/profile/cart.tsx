@@ -46,28 +46,45 @@ const CartExample = (props) => {
 export default CartExample
 
 export const query = graphql`
-  query ProductPrices2 {
-    prices: allStripePrice(
-      filter: { active: { eq: true }, currency: { eq: "usd" } }
-      sort: { fields: [unit_amount] }
-    ) {
-      edges {
-        node {
-          id
-          active
-          currency
-          unit_amount
-          unit_amount_decimal
-          product {
-            id
-            active
-            name
-            description
-            livemode
-          }
-          type
-        }
+query ProductPrices2 {
+prices: allStripePrice(filter: {active: {eq: true}, currency: {eq: "usd"}}, sort: {fields: [unit_amount]}) {
+  edges {
+    node {
+      id
+      active
+      currency
+      unit_amount
+      unit_amount_decimal
+      product {
+        id
+        active
+        name
+        description
+        livemode
       }
+      type
     }
   }
+}
+prices2: allStripePrice(filter: {active: {eq: true}, currency: {eq: "cny"}}, sort: {fields: [unit_amount]}) {
+  edges {
+    node {
+      id
+      active
+      currency
+      unit_amount
+      unit_amount_decimal
+      product {
+        id
+        active
+        name
+        description
+        livemode
+      }
+      type
+    }
+  }
+}
+}
+
 `
