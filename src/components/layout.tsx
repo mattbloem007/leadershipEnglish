@@ -10,6 +10,8 @@ import reset from '../styles/reset'
 import Logo from './logo'
 import LanguagePicker from './language-picker'
 import { usePageContext } from '../../PageContext';
+import Navbar from './Nav/Navbar';
+
 
 
 const GlobalStyles = createGlobalStyle`
@@ -84,6 +86,7 @@ const GlobalStyles = createGlobalStyle`
   a {
     transition: all 0.3s ease-in-out;
     color: black;
+    z-index: -1;
     text-decoration: underline;
     &:hover,
     &:focus {
@@ -125,7 +128,7 @@ const SideBarInner = styled(Box)<{ bg: string }>`
   height: 100%;
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   overflow-x: hidden;
@@ -263,24 +266,16 @@ const Layout = ({ children, color }: LayoutProps) => {
               </Box>
             </Footer>
 
-            <Box width={['3rem', '4rem', '5rem', '6rem']}>
-              <Nav
-                color={color}
-                mt={[0, 0, 0, 0]}
-                as="nav"
-                flexWrap="wrap"
-                flexDirection={['row', 'row', 'row']}
-                alignItems="flex-start"
-              >
+  {    /**      <Box width={['3rem', '4rem', '5rem', '6rem']}>
 
-              </Nav>
-            </Box>
+            </Box>*/}
               <Box width={['3rem', '4rem', '5rem', '6rem']}>
                 <Link to="/" aria-label="Future English, Back to Home">
                   <Logo />
                 </Link>
               </Box>
-              <Nav
+              <Navbar />
+            {/**  <Nav
                 color={color}
                 mt={[0, 0, 0, 10]}
                 as="nav"
@@ -308,7 +303,7 @@ const Layout = ({ children, color }: LayoutProps) => {
                    )
                  }
                })()}
-              </Nav>
+              </Nav>*/}
             </Flex>
           </SideBarInner>
           <Main>{children}</Main>

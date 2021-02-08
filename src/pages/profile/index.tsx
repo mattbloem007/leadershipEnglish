@@ -2775,7 +2775,8 @@ changeField = (fieldId) => {
            )}
          </ListItem>
 
-         <ListItem>
+         {langUS && (
+           <ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <PersonIcon />
@@ -2854,8 +2855,10 @@ changeField = (fieldId) => {
              </>
            )}
          </ListItem>
+         )}
 
-         <ListItem>
+         {langUs && (
+           <ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <PersonIcon />
@@ -2934,6 +2937,7 @@ changeField = (fieldId) => {
              </>
            )}
          </ListItem>
+         )}
 
          <ListItem>
            <Hidden xsDown>
