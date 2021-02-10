@@ -35,7 +35,17 @@ const CartExample = (props) => {
       <Elements stripe={stripePromise}>
         <CartOverview />
       </Elements>
-        <SkuCard prices={props.data.prices}/>
+      {(() => {
+         if (lang != 'cn') {
+           return (
+             <SkuCard prices={props.data.prices}/>
+           )
+         } else if (lang == 'cn') {
+           return (
+             <SkuCard prices={props.data.prices2}/>
+           )
+         }
+       })()}
       </CartProvider>
     </Layout>
   )

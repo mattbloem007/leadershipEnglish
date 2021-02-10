@@ -10,7 +10,7 @@ import reset from '../styles/reset'
 import Logo from './logo'
 import LanguagePicker from './language-picker'
 import { usePageContext } from '../../PageContext';
-import Navbar from './Nav/Navbar';
+import Navbar from './Nav/NavBar';
 
 
 
