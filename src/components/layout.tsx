@@ -86,7 +86,7 @@ const GlobalStyles = createGlobalStyle`
   a {
     transition: all 0.3s ease-in-out;
     color: black;
-    z-index: -1;
+    z-index: 0;
     text-decoration: underline;
     &:hover,
     &:focus {
