@@ -46,7 +46,6 @@ const Area = styled(animated.div)`
 
     grid-template-areas:
       'first-project'
-      'class'
       'mid'
       'about-us'
       'instagram';

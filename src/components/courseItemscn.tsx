@@ -46,9 +46,12 @@ const Area = styled(animated.div)`
     grid-template-rows: repeat(6, 50vw);
 
     grid-template-areas:
-      'mid4 mid5'
-      'mid6 mid'
-      'mid2 mid3'
+      'mid4'
+      'mid5'
+      'mid6'
+      'mid'
+      'mid2'
+      'mid3'
       'instagram';
   }
 `
