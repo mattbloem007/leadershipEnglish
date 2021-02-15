@@ -31,7 +31,7 @@ class Login extends React.Component {
     user = getProfile()
     console.log(user)
     user = user['https://app.io/user_metadata']
-
+    console.log (this.state.pc.lang)
     if (user == undefined) {
       if (Object.entries(this.state.pc).length == 0) {
         console.log("in here undefined")

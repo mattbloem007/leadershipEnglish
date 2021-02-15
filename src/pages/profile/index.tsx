@@ -968,7 +968,7 @@ changeField = (fieldId) => {
   };
 
   componentDidMount = () => {
-    if (Object.entries(this.state.pc).length != 0) {
+    if (Object.entries(this.state.pc).length != 0 && this.state.pc.lang == "cn") {
       this.setState({
       labelName: "学生英文名",
       labelUser: "用户名",
