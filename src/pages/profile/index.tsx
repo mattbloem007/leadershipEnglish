@@ -2775,7 +2775,7 @@ changeField = (fieldId) => {
            )}
          </ListItem>
 
-         {langUS && (
+         {langUs && (
            <ListItem>
            <Hidden xsDown>
              <ListItemIcon>
