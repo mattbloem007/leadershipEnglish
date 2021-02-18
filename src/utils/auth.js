@@ -611,7 +611,9 @@ console.log (lang)
 if (lang != "cn") {
    console.log("Inside us login")
    let authPromise = new Promise((resolve, reject) => {
-    lock.on('hide', () => reject("Popup closed."));
+    lock.on('hide', () => {
+      navigate("/")
+    });
     lock.show({allowForgotPassword: true}, (error, profile, idToken) => {
         lock.on('hide');
         (!error) ? resolve(profile) : reject(error);
@@ -629,15 +631,26 @@ if (lang != "cn") {
 
 }
 else {
-  lockCn.show({allowForgotPassword: true})
-  lockCn.on('authorization_error', function(error) {
-  lockCn.show({
-    flashMessage: {
-      type: 'error',
-      text: error.errorDescription
-    }
-  });
-  });
+
+  let authPromise = new Promise((resolve, reject) => {
+   lockCn.on('hide', () => {
+     navigate("/cn")
+   });
+   lockCn.show({allowForgotPassword: true}, (error, profile, idToken) => {
+       lockCn.on('hide');
+       (!error) ? resolve(profile) : reject(error);
+   });
+ })
+
+  // lockCn.show({allowForgotPassword: true})
+  // lockCn.on('authorization_error', function(error) {
+  // lockCn.show({
+  //   flashMessage: {
+  //     type: 'error',
+  //     text: error.errorDescription
+  //   }
+  // });
+  // });
 }
 
 }

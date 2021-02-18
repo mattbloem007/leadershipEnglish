@@ -23,12 +23,14 @@ const buttonStyles = {
 }
 
 let email = "";
-
+let user = null;
 
 
 const Cart = () => {
   const [loading, setLoading] = useState(false)
-  let user = getProfile()
+  getProfile().then((result) => {
+    user = result['https://app.io/user_metadata']
+  })
   const stripe = useStripe()
   const { originalPath, lang } = usePageContext()
   /* Gets the totalPrice and a method for redirecting to stripe */
