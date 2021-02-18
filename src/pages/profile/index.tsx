@@ -1074,6 +1074,8 @@ changeField = (fieldId) => {
       labelStudEmail,
       labelPrefDays,
       labelPrefTime,
+      labelChange,
+      labelAdd,
       langCn,
       langUs
     } = this.state;
