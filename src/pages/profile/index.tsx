@@ -2312,7 +2312,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            </Hidden>
 
-           {!hasUsernameName && (
+           {!hasUsername && (
              <ListItemIcon>
                <Tooltip title="No student name">
                  <WarningIcon color="error" />

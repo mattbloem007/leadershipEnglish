@@ -611,9 +611,9 @@ console.log (lang)
 if (lang != "cn") {
    console.log("Inside us login")
    let authPromise = new Promise((resolve, reject) => {
-    lock.once('hidden', () => reject("Popup closed."));
+    lock.on('hide', () => reject("Popup closed."));
     lock.show({allowForgotPassword: true}, (error, profile, idToken) => {
-        lock.off('hidden');
+        lock.on('hide');
         (!error) ? resolve(profile) : reject(error);
     });
   })
