@@ -46,7 +46,7 @@ const Cart = () => {
   }
 
   const createUser = async (customer, e) => {
-    console.log(cartDetails)
+    console.log("CUSTOMER", customer)
     const stripePromise = await loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
     let lineItems = []
     let message = "There has been a new order for the following product(s) from " + customer.student_name + ":\n\n"

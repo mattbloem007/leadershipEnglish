@@ -135,6 +135,7 @@ class Account extends React.Component {
       emailAddress: "",
       country: "",
       parent_name: "",
+      studentName: "",
       parent_no: "",
       parent_email: "",
       preferred_contact: "",
@@ -173,6 +174,8 @@ class Account extends React.Component {
       labelStudEmail: "Student Email (if over 18 years of age)",
       labelPrefDays: "Preferred class days of the week for our monthly package",
       labelPrefTime: "Preferred class time of the day, EST Boston/New York city",
+      labelAdd: "Add",
+      labelChange: "Press enter to change...",
       langCn: false,
       langUs: true
 
@@ -239,6 +242,7 @@ class Account extends React.Component {
         parent_email: "",
         preferred_contact: "",
         alt_contact: "",
+        studentName: "",
         age: "",
         grade: "",
         gender: "",
@@ -280,6 +284,7 @@ class Account extends React.Component {
      })
    }
   };
+
 
 //  changeLastName = () => {
 //   const { lastName } = this.state;
@@ -971,7 +976,7 @@ changeField = (fieldId) => {
     if (Object.entries(this.state.pc).length != 0 && this.state.pc.lang == "cn") {
       this.setState({
       labelName: "学生英文名",
-      labelUser: "用户名",
+      labelUser: "学生中文姓名",
       labelEmail: "邮件地址",
       labelSignIn: "已登入",
       labelLogout: "退出",
@@ -989,6 +994,8 @@ changeField = (fieldId) => {
       labelStudEmail: "学生电子邮件（18岁以上学生）",
       labelPrefDays: "首选的上课日期（每周的哪几天）",
       labelPrefTime: "首选的上课时间（北京时间）",
+      labelAdd: "输入添加",
+      labelChange: "按回车键保存",
       langCn: true,
       langUs: false
     })
@@ -1564,7 +1571,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.firstName
                    ? errors.firstName[0]
-                   : "Press Enter to change your name"
+                   : {labelChange}
                }
                label={labelName}
                placeholder={hasFirstName && user.student_name}
@@ -1611,7 +1618,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("first-name")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -1619,7 +1626,7 @@ changeField = (fieldId) => {
            )}
          </ListItem>
 
-         <ListItem>
+         {/**<ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <PersonOutlineIcon />
@@ -1678,7 +1685,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("username")}
                        >
-                         {/**<EditIcon />*/}
+                         <EditIcon />
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1697,9 +1704,10 @@ changeField = (fieldId) => {
                </ListItemSecondaryAction>
              </>
            )}
-         </ListItem>
+         </ListItem>*/}
 
-         <ListItem>
+
+         {/**<ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <EmailIcon />
@@ -1794,7 +1802,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("email-address")}
                        >
-                         {/**<EditIcon />*/}
+                         <EditIcon />
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -1813,7 +1821,7 @@ changeField = (fieldId) => {
                </ListItemSecondaryAction>
              </>
            )}
-         </ListItem>
+         </ListItem>*/}
 
          <ListItem>
            <Hidden xsDown>
@@ -1840,7 +1848,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.country
                    ? errors.country[0]
-                   : "Press Enter to change your country"
+                   : {labelChange}
                }
                label={labelCountry}
                placeholder={hasCountry && user.country}
@@ -1887,7 +1895,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("country")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -1920,7 +1928,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.parent_name
                    ? errors.parent_name[0]
-                   : "Press Enter to change your parent name"
+                   : {labelChange}
                }
                label={labelPName}
                placeholder={hasParentName && user.parent_name}
@@ -1967,7 +1975,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("parent-name")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -1982,7 +1990,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            </Hidden>
 
-           {!hasCountry && (
+           {!hasParentEmail && (
              <ListItemIcon>
                <Tooltip title="No parent email">
                  <WarningIcon color="error" />
@@ -2000,7 +2008,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.parent_email
                    ? errors.parent_email[0]
-                   : "Press Enter to change your parent email"
+                   : {labelChange}
                }
                label={labelPemail}
                placeholder={hasParentEmail && user.parent_email}
@@ -2047,7 +2055,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("parent-email")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2062,7 +2070,87 @@ changeField = (fieldId) => {
              </ListItemIcon>
            </Hidden>
 
-           {!hasCountry && (
+           {!hasParentNo && (
+             <ListItemIcon>
+               <Tooltip title="No parent email">
+                 <WarningIcon color="error" />
+               </Tooltip>
+             </ListItemIcon>
+           )}
+
+           {showingField === "parent-no" && (
+             <TextField
+               autoComplete="Parent Number"
+               autoFocus
+               disabled={performingAction}
+               error={!!(errors && errors.parent_no)}
+               fullWidth
+               helperText={
+                 errors && errors.parent_no
+                   ? errors.parent_no[0]
+                   : {labelChange}
+               }
+               label={labelPNo}
+               placeholder={hasParentNo && user.parent_no}
+               required
+               type="text"
+               value={parent_no}
+               variant="filled"
+               InputLabelProps={{ required: false }}
+               onBlur={this.hideFields}
+               onKeyDown={(event) => this.handleKeyDown(event, "parent-no")}
+               onChange={this.handleParentNoChange}
+             />
+           )}
+
+           {showingField !== "parent-no" && (
+             <>
+               <ListItemText
+                 primary={labelPNo}
+                 secondary={
+                   hasParentNo
+                     ? user.parent_no
+                     : "You don’t have a parent number set"
+                 }
+               />
+
+               <ListItemSecondaryAction>
+                 {hasParentNo && (
+                   <Tooltip title="Change">
+                     <div>
+                       <IconButton
+                         disabled={performingAction}
+                         onClick={() => this.showField("parent-no")}
+                       >
+                         <EditIcon />
+                       </IconButton>
+                     </div>
+                   </Tooltip>
+                 )}
+
+                 {!hasParentNo && (
+                   <Button
+                     color="primary"
+                     disabled={performingAction}
+                     variant="contained"
+                     onClick={() => this.showField("parent-no")}
+                   >
+                     {labelAdd}
+                   </Button>
+                 )}
+               </ListItemSecondaryAction>
+             </>
+           )}
+         </ListItem>
+
+         <ListItem>
+           <Hidden xsDown>
+             <ListItemIcon>
+               <PersonIcon />
+             </ListItemIcon>
+           </Hidden>
+
+           {!hasPreferredContact && (
              <ListItemIcon>
                <Tooltip title="No preferred contact">
                  <WarningIcon color="error" />
@@ -2080,7 +2168,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_contact
                    ? errors.preferred_contact[0]
-                   : "Press Enter to change your preferred contact"
+                   : {labelChange}
                }
                label={labelPrefCont}
                placeholder={hasPreferredContact && user.preferred_contact}
@@ -2127,7 +2215,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("preferred-contact")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2142,7 +2230,7 @@ changeField = (fieldId) => {
              </ListItemIcon>
            </Hidden>
 
-           {!hasCountry && (
+           {!hasAltContact && (
              <ListItemIcon>
                <Tooltip title="No alternative contact">
                  <WarningIcon color="error" />
@@ -2160,7 +2248,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.alt_contact
                    ? errors.alt_contact[0]
-                   : "Press Enter to change your alternative contact"
+                   : {labelChange}
                }
                label={labelAltCont}
                placeholder={hasAltContact && user.alt_contact}
@@ -2207,7 +2295,87 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("alt-contact")}
                    >
-                     Add
+                     {labelAdd}
+                   </Button>
+                 )}
+               </ListItemSecondaryAction>
+             </>
+           )}
+         </ListItem>
+
+         <ListItem>
+           <Hidden xsDown>
+             <ListItemIcon>
+               <PersonIcon />
+             </ListItemIcon>
+           </Hidden>
+
+           {!hasUsernameName && (
+             <ListItemIcon>
+               <Tooltip title="No student name">
+                 <WarningIcon color="error" />
+               </Tooltip>
+             </ListItemIcon>
+           )}
+
+           {showingField === "username" && (
+             <TextField
+               autoComplete="student name"
+               autoFocus
+               disabled={performingAction}
+               error={!!(errors && errors.student_name)}
+               fullWidth
+               helperText={
+                 errors && errors.student_name
+                   ? errors.student_name[0]
+                   : {labelChange}
+               }
+               label={labelUser}
+               placeholder={hasUsername && user.student_name}
+               required
+               type="text"
+               value={student_name}
+               variant="filled"
+               InputLabelProps={{ required: false }}
+               onBlur={this.hideFields}
+               onKeyDown={(event) => this.handleKeyDown(event, "username")}
+               onChange={this.handleUsernameChange}
+             />
+           )}
+
+           {showingField !== "username" && (
+             <>
+               <ListItemText
+                 primary={labelUser}
+                 secondary={
+                   hasUsername
+                     ? user.student_name
+                     : "You don’t have a student name set"
+                 }
+               />
+
+               <ListItemSecondaryAction>
+                 {hasUsername && (
+                   <Tooltip title="Change">
+                     <div>
+                       <IconButton
+                         disabled={performingAction}
+                         onClick={() => this.showField("username")}
+                       >
+                         <EditIcon />
+                       </IconButton>
+                     </div>
+                   </Tooltip>
+                 )}
+
+                 {!hasUsername && (
+                   <Button
+                     color="primary"
+                     disabled={performingAction}
+                     variant="contained"
+                     onClick={() => this.showField("username")}
+                   >
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2240,7 +2408,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.age
                    ? errors.age[0]
-                   : "Press Enter to change your age"
+                   : {labelChange}
                }
                label={labelAge}
                placeholder={hasAge && user.age}
@@ -2287,7 +2455,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("age")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2320,7 +2488,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.grade
                    ? errors.grade[0]
-                   : "Press Enter to change your grade"
+                   : {labelChange}
                }
                label={labelGrade}
                placeholder={hasGrade && user.grade}
@@ -2367,7 +2535,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("grade")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2400,7 +2568,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.gender
                    ? errors.gender[0]
-                   : "Press Enter to change your gender"
+                   : {labelChange}
                }
                label={labelGender}
                placeholder={hasGender && user.gender}
@@ -2447,7 +2615,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("gender")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2480,7 +2648,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.special_needs
                    ? errors.special_needs[0]
-                   : "Press Enter to change your special needs"
+                   : {labelChange}
                }
                label={labelSpecNeeds}
                placeholder={hasSpecialNeeds && user.special_needs}
@@ -2527,7 +2695,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("special-needs")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2560,7 +2728,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.student_email
                    ? errors.student_email[0]
-                   : "Press Enter to change your student email"
+                   : {labelChange}
                }
                label={labelStudEmail}
                placeholder={hasStudentEmail && user.student_email}
@@ -2607,7 +2775,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("student-email")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2640,7 +2808,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_days
                    ? errors.preferred_days[0]
-                   : "Press Enter to change your preferred days"
+                   : {labelChange}
                }
                label={labelPrefDays}
                placeholder={hasPreferredDays && user.preferred_days}
@@ -2687,7 +2855,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("preferred-days")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2720,7 +2888,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_time
                    ? errors.preferred_time[0]
-                   : "Press Enter to change your preferred time"
+                   : {labelChange}
                }
                label={labelPrefTime}
                placeholder={hasPreferredTime && user.preferred_time}
@@ -2767,7 +2935,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("preferred-time")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2801,7 +2969,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.focus_area
                    ? errors.focus_area[0]
-                   : "Press Enter to change your focus area"
+                   : {labelChange}
                }
                label="For students on Independent Education Plans, describe the student’s focus areas of need."
                placeholder={hasFocusArea && user.focus_area}
@@ -2848,7 +3016,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("focus-area")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>
@@ -2883,7 +3051,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.focus_area2
                    ? errors.focus_area2[0]
-                   : "Press Enter to change your focus area"
+                   : {labelChange}
                }
                label="For students of English as a Second Language, describe thestudent’s focus areas."
                placeholder={hasFocusArea2 && user.focus_area2}
@@ -2930,7 +3098,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("focus-area2")}
                    >
-                     Add
+                     {labelAdd}
                    </Button>
                  )}
                </ListItemSecondaryAction>

@@ -609,16 +609,23 @@ export const login = (lang) => {
 
 console.log (lang)
 if (lang != "cn") {
-  console.log("Inside us login")
-  lock.show({allowForgotPassword: true})
-  lock.on('authorization_error', function(error) {
-  lock.show({
-    flashMessage: {
-      type: 'error',
-      text: error.errorDescription
-    }
-  });
-});
+   console.log("Inside us login")
+   let authPromise = new Promise((resolve, reject) => {
+    lock.once('hidden', () => reject("Popup closed."));
+    lock.showSignin({allowForgotPassword: true}, (error, profile, idToken) => {
+        lock.off('hidden');
+        (!error) ? resolve(profile) : reject(error);
+    });
+  })
+//   lock.show({allowForgotPassword: true})
+//   lock.on('authorization_error', function(error) {
+//   lock.show({
+//     flashMessage: {
+//       type: 'error',
+//       text: error.errorDescription
+//     }
+//   });
+// });
 
 }
 else {
