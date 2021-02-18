@@ -2057,7 +2057,7 @@ changeField = (fieldId) => {
                      variant="contained"
                      onClick={() => this.showField("parent-email")}
                    >
-                     {labelAdd}
+                     labelAdd
                    </Button>
                  )}
                </ListItemSecondaryAction>
