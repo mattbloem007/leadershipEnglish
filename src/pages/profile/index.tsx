@@ -175,7 +175,7 @@ class Account extends React.Component {
       labelPrefDays: "Preferred class days of the week for our monthly package",
       labelPrefTime: "Preferred class time of the day, EST Boston/New York city",
       labelAdd: "Add",
-      labelChange: labelChange,
+      labelChange: "Press enter to change...",
       langCn: false,
       langUs: true
 
