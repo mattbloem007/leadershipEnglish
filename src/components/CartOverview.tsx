@@ -51,26 +51,27 @@ const Cart = ({user}) => {
     console.log("CUSTOMER", customer)
     const stripePromise = await loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
     let lineItems = []
-    let message = "There has been a new order for the following product(s) from " + customer.student_name + ":\n\n"
+    
+  //  let message = "There has been a new order for the following product(s) from " + customer.student_name + ":\n\n"
     let listItems = "";
     Object.keys(cartDetails).map(key => {
       console.log(cartDetails[key])
       listItems = listItems + cartDetails[key].name + " valued at: " + cartDetails[key].formattedValue + "\n"
       lineItems = [...lineItems, {price: cartDetails[key].sku, quantity: cartDetails[key].quantity}]
     })
-    message = listItems;
+    //message = listItems;
 
-    var template_params = {
-       "reply_to": e,
-       "from_name": customer.student_name,
-       "to_name": "Dylan",
-       "message_html": message
-    }
-
-    var service_id = "default_service";
-    var template_id = "template_sr6blae";
-    var user_id = "user_wLPGPl2w2ETFdTUDNZQP2";
-    emailjs.send(service_id, template_id, template_params, user_id);
+    // var template_params = {
+    //    "reply_to": e,
+    //    "from_name": customer.student_name,
+    //    "to_name": "Dylan",
+    //    "message_html": message
+    // }
+    //
+    // var service_id = "default_service";
+    // var template_id = "template_sr6blae";
+    // var user_id = "user_wLPGPl2w2ETFdTUDNZQP2";
+    // emailjs.send(service_id, template_id, template_params, user_id);
 
   //  redirectToCheckout();
   console.log(stripePromise)
