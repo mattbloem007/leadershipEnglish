@@ -142,7 +142,14 @@ const SkuCard = ({prices}) => {
                 <Container maxWidth="md" component="main">
                   <Grid container spacing={5} alignItems="flex-end">
                     {prices.edges.map(({ node:tier}) => {
-                      console.log("livemode: ", tier.product.livemode)
+                      console.log("type: ", tier.type)
+                      let mode = "payment"
+                      if (tier.type == "one_time") {
+                        mode = "payment"
+                      }
+                      else if (tier.type == "recurring") {
+                        mode = "subscription"
+                      }
                       const newSku  = {
                         sku: tier.id,
                         name: tier.product.name,
@@ -150,7 +157,8 @@ const SkuCard = ({prices}) => {
                         currency: tier.currency,
                         description: tier.product.description,
                         active: tier.product.active,
-                        livemode: tier.product.livemode
+                        livemode: tier.product.livemode,
+                        mode: mode
                       }
 
                       if (newSku.active == true && newSku.livemode == true) {
