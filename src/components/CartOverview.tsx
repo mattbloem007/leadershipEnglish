@@ -23,14 +23,14 @@ const buttonStyles = {
 }
 
 let email = "";
-let user = null;
 
 
-const Cart = () => {
+const Cart = ({user}) => {
   const [loading, setLoading] = useState(false)
-  getProfile().then((result) => {
-    user = result['https://app.io/user_metadata']
-  })
+  // getProfile().then((result) => {
+  //   user = result['https://app.io/user_metadata']
+  // })
+  console.log("user", user)
   const stripe = useStripe()
   const { originalPath, lang } = usePageContext()
   /* Gets the totalPrice and a method for redirecting to stripe */
@@ -42,10 +42,10 @@ const Cart = () => {
     cartDetails
   } = useShoppingCart()
 
-  if (user) {
-    email = user.email
-    user = user['https://app.io/user_metadata']
-  }
+  // if (user) {
+  //   email = user.email
+  //   user = user['https://app.io/user_metadata']
+  // }
 
   const createUser = async (customer, e) => {
     console.log("CUSTOMER", customer)

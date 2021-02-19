@@ -1,10 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { silentAuth } from "./src/utils/auth"
+import { silentAuth, getProfile } from "./src/utils/auth"
 import i18n from './i18next';
 //import Auth from './src/utils/Auth2'
 
 const PageContext = React.createContext({});
+
+let user = null;
 
 class PageContextProvider extends React.Component {
 
@@ -28,6 +30,7 @@ class PageContextProvider extends React.Component {
     componentDidMount() {
       console.log("PC, ", this.state.loading)
       silentAuth(this.handleCheckSession)
+      
     }
 
     render() {

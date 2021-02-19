@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useRef, useEffect} from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../../components/layout2'
 import SEO from '../../components/SEO'
 
 import SkuCard from '../../components/Products/SkuCard'
 import CartOverview from '../../components/CartOverview'
+import { getProfile } from "../../utils/auth"
 
 import { loadStripe } from '@stripe/stripe-js'
 import { CartProvider } from 'use-shopping-cart'
@@ -13,10 +14,38 @@ import { Elements } from '@stripe/react-stripe-js';
 
 
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
+let user = null;
+
+function useDidMount() {
+  const didMountRef = useRef(true);
+
+  useEffect(() => {
+    didMountRef.current = false;
+    getProfile().then((result) => {
+      user = result['https://app.io/user_metadata']
+    })
+  }, []);
+  return didMountRef.current;
+};
 
 const CartExample = (props) => {
   const {originalPath, lang} = usePageContext()
   console.log(props)
+  const didMount = useDidMount();
+  const [state, setState] = React.useState(0);
+
+  const update = () => {
+   setState(user)
+  }
+
+  useEffect(() => {
+    if(didMount) {
+     console.log('mounted');
+    } else {
+     console.log('called', state);
+    }
+  }, [state, didMount]);
+
   return (
 
     <Layout>
@@ -33,7 +62,7 @@ const CartExample = (props) => {
         billingAddressCollection={true}
       >
       <Elements stripe={stripePromise}>
-        <CartOverview />
+        <CartOverview user={user}/>
       </Elements>
       {(() => {
          if (lang != 'cn') {
