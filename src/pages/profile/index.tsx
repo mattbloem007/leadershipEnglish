@@ -1567,7 +1567,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.firstName
                    ? errors.firstName[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelName}
                placeholder={hasFirstName && user.student_name}
@@ -1647,7 +1647,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.username
                    ? errors.username[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelUser}
                placeholder={hasUsername && user.student_name}
@@ -1745,7 +1745,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.emailAddress
                    ? errors.emailAddress[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelEmail}
                placeholder={emailAddress}
@@ -1843,7 +1843,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.country
                    ? errors.country[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelCountry}
                placeholder={hasCountry && user.country}
@@ -1923,7 +1923,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.parent_name
                    ? errors.parent_name[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelPName}
                placeholder={hasParentName && user.parent_name}
@@ -2003,7 +2003,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.parent_email
                    ? errors.parent_email[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelPemail}
                placeholder={hasParentEmail && user.parent_email}
@@ -2083,7 +2083,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_contact
                    ? errors.preferred_contact[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelPrefCont}
                placeholder={hasPreferredContact && user.preferred_contact}
@@ -2163,7 +2163,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.alt_contact
                    ? errors.alt_contact[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelAltCont}
                placeholder={hasAltContact && user.alt_contact}
@@ -2243,7 +2243,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.age
                    ? errors.age[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelAge}
                placeholder={hasAge && user.age}
@@ -2323,7 +2323,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.grade
                    ? errors.grade[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelGrade}
                placeholder={hasGrade && user.grade}
@@ -2403,7 +2403,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.gender
                    ? errors.gender[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelGender}
                placeholder={hasGender && user.gender}
@@ -2483,7 +2483,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.special_needs
                    ? errors.special_needs[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelSpecNeeds}
                placeholder={hasSpecialNeeds && user.special_needs}
@@ -2563,7 +2563,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.student_email
                    ? errors.student_email[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelStudEmail}
                placeholder={hasStudentEmail && user.student_email}
@@ -2643,7 +2643,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_days
                    ? errors.preferred_days[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelPrefDays}
                placeholder={hasPreferredDays && user.preferred_days}
@@ -2723,7 +2723,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.preferred_time
                    ? errors.preferred_time[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label={labelPrefTime}
                placeholder={hasPreferredTime && user.preferred_time}
@@ -2804,7 +2804,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.focus_area
                    ? errors.focus_area[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label="For students on Independent Education Plans, describe the student’s focus areas of need."
                placeholder={hasFocusArea && user.focus_area}
@@ -2886,7 +2886,7 @@ changeField = (fieldId) => {
                helperText={
                  errors && errors.focus_area2
                    ? errors.focus_area2[0]
-                   : {labelChange}
+                   : "Press enter to change..."
                }
                label="For students of English as a Second Language, describe thestudent’s focus areas."
                placeholder={hasFocusArea2 && user.focus_area2}
