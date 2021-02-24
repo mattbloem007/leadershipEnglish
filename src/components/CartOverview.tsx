@@ -35,18 +35,24 @@ const Cart = ({user}) => {
   const { originalPath, lang } = usePageContext()
   let labelNo = "Number of items:"
   let labelTot = "Total: $"
-  if (lang == "cn") {
-    labelNo = "购买课程数:"
-    labelTot = "总价¥"
-  }
+
   /* Gets the totalPrice and a method for redirecting to stripe */
   const {
     formattedTotalPrice,
+    totalPrice,
     redirectToCheckout,
     cartCount,
     clearCart,
     cartDetails
   } = useShoppingCart()
+
+  let tot = labelTot + " " + formattedTotalPrice
+
+  if (lang == "cn") {
+    labelNo = "购买课程数:"
+    labelTot = "总价¥" + " CN¥" + totalPrice/100
+    tot = labelTot
+  }
 
   // if (user) {
   //   email = user.email
@@ -104,7 +110,7 @@ const Cart = ({user}) => {
   }
 
   let noItem = labelNo + " " + cartCount
-  let tot = labelTot + " " + formattedTotalPrice
+
   return (
     <div>
       {/* This is where we'll render our cart */}
