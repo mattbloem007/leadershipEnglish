@@ -16,7 +16,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 
-
+import { usePageContext } from '../../../PageContext';
 import { useShoppingCart, formatCurrencyString } from 'use-shopping-cart'
 
 const useStyles = makeStyles((theme) => ({
@@ -127,12 +127,17 @@ const SkuCard = ({prices}) => {
   const classes = useStyles();
   const { addItem } = useShoppingCart()
   console.log(prices)
+  let labelPrice = "Pricing"
+  const {lang} = usePageContext();
+  if (lang == "cn") {
+    labelPrice = "价格";
+  }
   return (
     <React.Fragment>
       <CssBaseline />
                 <Container maxWidth="sm" component="main" className={classes.heroContent}>
                   <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                    Pricing
+                    {labelPrice}
                   </Typography>
                   {/**<Typography variant="h5" align="center" color="textSecondary" component="p">
                     Quickly build an effective pricing table for your potential customers with this layout.

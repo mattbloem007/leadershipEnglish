@@ -2102,7 +2102,8 @@ changeField = (fieldId) => {
            )}
          </ListItem>
 
-         <ListItem>
+         {langCn && (
+           <ListItem>
            <Hidden xsDown>
              <ListItemIcon>
                <PersonOutlineIcon />
@@ -2111,13 +2112,13 @@ changeField = (fieldId) => {
 
            {!hasUsername && (
              <ListItemIcon>
-               <Tooltip title="No Student name">
+               <Tooltip title="No Student Chinese name">
                  <WarningIcon color="error" />
                </Tooltip>
              </ListItemIcon>
            )}
 
-           {showingField === "username" && (
+           {langCn && showingField === "username" && (
              <TextField
                autoComplete="username"
                autoFocus
@@ -2130,7 +2131,7 @@ changeField = (fieldId) => {
                    : labelChange
                }
                label={labelUser}
-               placeholder={hasUsername && user.student_name}
+               placeholder={hasUsername && user.username}
                required
                type="text"
                value={username}
@@ -2148,7 +2149,7 @@ changeField = (fieldId) => {
                  primary={labelUser}
                  secondary={
                    hasUsername
-                     ? user.student_name
+                     ? user.username
                      : "You don’t have a Student name"
                  }
                />
@@ -2161,7 +2162,7 @@ changeField = (fieldId) => {
                          disabled={performingAction}
                          onClick={() => this.showField("username")}
                        >
-                         {/**<EditIcon />*/}
+                         <EditIcon />
                        </IconButton>
                      </div>
                    </Tooltip>
@@ -2181,6 +2182,7 @@ changeField = (fieldId) => {
              </>
            )}
          </ListItem>
+       )}
 
          <ListItem>
            <Hidden xsDown>

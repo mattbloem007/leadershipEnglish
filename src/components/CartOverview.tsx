@@ -33,6 +33,12 @@ const Cart = ({user}) => {
   console.log("user", user)
   const stripe = useStripe()
   const { originalPath, lang } = usePageContext()
+  let labelNo = "Number of items:"
+  let labelTot = "Total: $"
+  if (lang == "cn") {
+    labelNo = "购买课程数:"
+    labelTot = "总价¥"
+  }
   /* Gets the totalPrice and a method for redirecting to stripe */
   const {
     formattedTotalPrice,
@@ -51,7 +57,7 @@ const Cart = ({user}) => {
     console.log("CUSTOMER", customer)
     const stripePromise = await loadStripe(process.env.GATSBY_STRIPE_PUBLISHABLE_KEY)
     let lineItems = []
-    
+
   //  let message = "There has been a new order for the following product(s) from " + customer.student_name + ":\n\n"
     let listItems = "";
     Object.keys(cartDetails).map(key => {
@@ -97,12 +103,13 @@ const Cart = ({user}) => {
 
   }
 
-
+  let noItem = labelNo + " " + cartCount
+  let tot = labelTot + " " + formattedTotalPrice
   return (
     <div>
       {/* This is where we'll render our cart */}
-      <p>Number of Items: {cartCount}</p>
-      <p>Total: {formattedTotalPrice}</p>
+      <p>{noItem}</p>
+      <p>{tot}</p>
 
       {/* Redirects the user to Stripe */}
       <button

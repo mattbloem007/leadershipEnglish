@@ -33,7 +33,10 @@ const CartExample = (props) => {
   console.log(props)
   const didMount = useDidMount();
   const [state, setState] = React.useState(0);
-
+  let labelOff = "Future Leadership Offerings"
+  if (lang == "cn") {
+    labelOff = "未来领导力课程"
+  }
   const update = () => {
    setState(user)
   }
@@ -50,7 +53,7 @@ const CartExample = (props) => {
 
     <Layout>
       <SEO title="Cart Example" />
-      <h1>Future Leadership Offerings</h1>
+      <h1>{labelOff}</h1>
 
       <CartProvider
         mode="client-only"
