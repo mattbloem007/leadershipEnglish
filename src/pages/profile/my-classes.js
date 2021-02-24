@@ -57,6 +57,7 @@ class Orders extends React.Component {
     let data = []
     info.map ((sub, i) => {
       let a = new Date(sub.created * 1000);
+      console.log("Date :", a)
       let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       let year = a.getFullYear();
       let month = months[a.getMonth()];
@@ -65,8 +66,10 @@ class Orders extends React.Component {
       let min = a.getMinutes();
       let sec = a.getSeconds();
       let time = date + ' ' + month + ' ' + year;
+      console.log("Time:", time)
       data.push({id: i, date: time, name: sub.name, status: sub.active})
     })
+    console.log("data: ", data)
 
     this.setState({tableData: data, dataThere: true})
   }
