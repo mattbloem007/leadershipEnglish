@@ -53,7 +53,8 @@ class Orders extends React.Component {
     getProfile()
     .then((result) => {
       user = result['https://app.io/user_metadata']
-      this.getUser(user)
+      console.log("RESULT ", result)
+      this.getUser(result)
     })
 
   }
