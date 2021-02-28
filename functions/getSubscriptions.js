@@ -6,13 +6,13 @@ module.exports.handler = async (event, context, callback) => {
   // }
 
   const requestBody = JSON.parse(event.body)
-  console.log(requestBody)
+  console.log("CUSTOMER RAW: ", requestBody.customer)
 
 
   const customer = await stripe.customers.list({
     email: requestBody.customer.email
   })
-  console.log(customer.data[0])
+  console.log("Customer after email: ", customer.data[0])
   const subscriptions = await stripe.subscriptions.list({
     customer: customer.data[0].id
   })

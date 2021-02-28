@@ -75,7 +75,7 @@ class Orders extends React.Component {
   }
 
    getUser = async (user) => {
-
+     console.log("EMAIL : ", user.email)
     const body = JSON.stringify({
       customer: user,
     })
