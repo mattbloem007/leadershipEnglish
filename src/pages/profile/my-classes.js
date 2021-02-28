@@ -15,6 +15,7 @@ import { getProfile } from "../../utils/auth"
 
 
 let email = "";
+let user = null
 
 function preventDefault(event) {
   event.preventDefault();
@@ -49,8 +50,12 @@ class Orders extends React.Component {
   }
 
   componentWillMount = () => {
-    let user = getProfile()
-    this.getUser(user)
+    getProfile()
+    .then((result) => {
+      user = result['https://app.io/user_metadata']
+      this.getUser(user)
+    })
+
   }
 
   populateTable = (info) => {
