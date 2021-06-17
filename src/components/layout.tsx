@@ -11,6 +11,8 @@ import Logo from './logo'
 import LanguagePicker from './language-picker'
 import { usePageContext } from '../../PageContext';
 import Navbar from './Nav/NavBar';
+import { Facebook, Youtube, Twitter } from 'react-feather';
+import {FaTwitter, FaFacebookSquare, FaYoutube} from 'react-icons/fa'
 
 
 
@@ -125,7 +127,7 @@ const PButton = styled(Button)<{ color: string }>`
 
 const SideBarInner = styled(Box)<{ bg: string }>`
   position: fixed;
-  height: 30%;
+  height: 10%;
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
   flex-direction: row;
@@ -205,7 +207,7 @@ const Footer = styled.footer<{ color: string }>`
 
   @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
     position: relative;
-    width: 100%;
+    width: 20%;
   }
 `
 
@@ -243,7 +245,7 @@ const Layout = ({ children, color }: LayoutProps) => {
               justifyContent="space-between"
             >
             <Footer color={color}>
-              <Box p={[1, 1, 5]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
+              <Box p={[0, 0, 5]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
               <PButton color="#ff0000" py={4} px={4}>
               {(() => {
                  if (lang != 'cn') {
@@ -263,17 +265,31 @@ const Layout = ({ children, color }: LayoutProps) => {
 
                 </PButton>
               </Box>
+
             </Footer>
 
   {    /**      <Box width={['3rem', '4rem', '5rem', '6rem']}>
 
             </Box>*/}
-              <Box width={['3rem', '4rem', '5rem', '6rem']}>
+              <Box width={['8rem', '8rem', '8rem', '8rem']}>
                 <Link to="/" aria-label="Future English, Back to Home">
                   <Logo />
                 </Link>
               </Box>
-              <Navbar />
+              <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
+                <Link to="https://web.facebook.com/">
+                  <FaFacebookSquare size={'3em'}/>
+                </Link>
+                <Link to="https://youtube.com/">
+                  <FaYoutube size={'3em'} />
+                </Link>
+                <Link to="https://twitter.com/">
+                  <FaTwitter size={'3em'}/>
+                </Link>
+              </Box>
+              <Box p={[0, 0, 0]} fontSize={0} width={['33rem', '34rem', '33rem', '100%']}>
+                <Navbar />
+              </Box>
             {/**  <Nav
                 color={color}
                 mt={[0, 0, 0, 10]}
@@ -303,6 +319,7 @@ const Layout = ({ children, color }: LayoutProps) => {
                  }
                })()}
               </Nav>*/}
+
             </Flex>
           </SideBarInner>
           <Main>{children}</Main>

@@ -11,7 +11,7 @@ const Ul = styled.ul`
   list-style: none;
     display: flex;
     flex-flow: column nowrap;
-
+        padding-left: 0px;
     font-size: ${(props) => props.theme.fontSizes[3]};
 
   @media (max-width: ${(props) => props.theme.breakpoints[2]}) {

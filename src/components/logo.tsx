@@ -5,8 +5,8 @@ import { usePageContext } from '../../PageContext';
 
 
 const styles = {
-  height: '250%',
-  width: '250%'
+  height: '150%',
+  width: '150%'
 }
 
 const Logo = () => {
