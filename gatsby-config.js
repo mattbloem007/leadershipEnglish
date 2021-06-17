@@ -112,7 +112,7 @@ module.exports = {
       options: {
         wordPressUrl: 'http://wordpress.futureleadership.online/',
         uploadsUrl: 'http://wordpress.futureleadership.online/wp-content/uploads/',
-        processPostTypes: ["Post"],
+        processPostTypes: ["Page", "Post"],
         graphqlTypeName: `WPGraphQL`,
       },
     },
