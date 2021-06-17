@@ -9,6 +9,13 @@ import { Box, AnimatedBox, Button } from '../elements'
 import SEO from '../components/SEO'
 import Link from '../../Link'
 import { usePageContext } from '../../PageContext';
+import contentParser from 'gatsby-wpgraphql-inline-images';
+
+const pluginOptions = {
+  wordPressUrl: 'http://wordpress.futureleadership.online/',
+  uploadsUrl: 'http://wordpress.futureleadership.online/wp-content/uploads/'
+};
+
 const PBox = styled(AnimatedBox)`
   max-width: 1400px;
   margin: 0 auto;
@@ -65,7 +72,7 @@ const Project = ({ data, pageContext }) => {
   }
   console.log(isImage)
   return (
-    <Layout color="#90BDDF">
+    <Layout>
       <SEO
         pathname={pageContext.slug}
 
@@ -77,7 +84,7 @@ const Project = ({ data, pageContext }) => {
 {/**        <Category style={categoryAnimation}>{project.category}</Category>*/}
         <animated.h1 style={titleAnimation}>{pageContext.title}</animated.h1>
         <Description style={descAnimation}>
-          <div dangerouslySetInnerHTML={{ __html: content }} />
+          <div>{contentParser({ content }, pluginOptions)}</div>
         </Description>
       </PBox>
       <Content bg="#90BDDF" py={10}>
