@@ -106,15 +106,16 @@ module.exports = {
       //  url: `http://alchemy-of-remembrance.local/graphql`
        },
      },
-    //  {
-    //   resolve: "gatsby-wpgraphql-inline-images",
-    //   options: {
-    //     wordPressUrl: 'http://41.185.8.137/~xic02/future%20english/',
-    //     uploadsUrl: 'http://41.185.8.137/~xic02/future%20english/wp-content/uploads/',
-    //     processPostTypes: ["Post"],
-    //     graphqlTypeName: `WPGraphQL`,
-    //   },
-    // },
+
+     {
+      resolve: "gatsby-wpgraphql-inline-images",
+      options: {
+        wordPressUrl: 'http://wordpress.futureleadership.online/',
+        uploadsUrl: 'http://wordpress.futureleadership.online/wp-content/uploads/',
+        processPostTypes: ["Post"],
+        graphqlTypeName: `WPGraphQL`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

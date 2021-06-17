@@ -9,7 +9,7 @@ export default props => {
   const { modal } = useModal()
 
   return (
-    <Layout >
+    <Layout>
       <article className={modal && "max-h-80vh md:max-h-90vh overflow-auto"}>
         <div className={modal ? "p-4 lg:p-8" : "container py-8"}>
           <h1 className="text-2xl lg:text-3xl text-blue-500 font-bold leading-tight">

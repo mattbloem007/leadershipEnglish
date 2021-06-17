@@ -125,14 +125,13 @@ const PButton = styled(Button)<{ color: string }>`
 
 const SideBarInner = styled(Box)<{ bg: string }>`
   position: fixed;
-  height: 100%;
+  height: 70%;
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  overflow-x: hidden;
-  overflow-y: auto;
+
 
   background: ${(props) => props.bg};
 

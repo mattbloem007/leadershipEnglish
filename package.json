@@ -64,6 +64,7 @@
     "gatsby-transformer-remark": "^2.8.23",
     "gatsby-transformer-sharp": "^2.5.10",
     "gatsby-transformer-yaml": "^2.4.9",
+    "gatsby-wpgraphql-inline-images": "^0.2.5",
     "i18next": "^19.6.2",
     "lodash": "^4.17.20",
     "polished": "^3.6.5",

@@ -41,7 +41,7 @@ const Blog = () => {
   })
 
   return (
-    <Layout color="#ff0000">
+    <Layout>
       <SEO title="News | Future English Academy" />
       <BlogPage />
     </Layout>
