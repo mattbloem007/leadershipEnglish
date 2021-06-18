@@ -149,15 +149,15 @@ class PageItemCn extends React.Component {
 
               );
             break;
-            case 15:
-            console.log(this.props.data)
-            return(
-            <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
-              <Img fluid={this.props.data.cover.childImageSharp.fluid} />
-              <span>{this.props.data.title}</span>
-            </Classes>
-          )
-            break;
+          //   case 15:
+          //   console.log(this.props.data)
+          //   return(
+          //   <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
+          //     <Img fluid={this.props.data.cover.childImageSharp.fluid} />
+          //     <span>{this.props.data.title}</span>
+          //   </Classes>
+          // )
+          //   break;
 
             case 12:
             console.log("Made course project", this.props.data.node)
@@ -284,7 +284,7 @@ export default function(props) {
             }
 
       });
-      items.push(<PageItemCn key={"e.node.id"} data={props.data.firstProject} file={null} title={15} />)
+      //items.push(<PageItemCn key={"e.node.id"} data={props.data.firstProject} file={null} title={15} />)
       console.log(items)
     }
     return <Area>{items}</Area>;

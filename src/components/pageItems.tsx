@@ -162,15 +162,15 @@ class PageItem extends React.Component {
 
                 );
               break;
-            case 10:
-            console.log(this.props.data)
-            return(
-            <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
-              <Img fluid={this.props.data.cover.childImageSharp.fluid} />
-              <span>{this.props.data.title}</span>
-            </Classes>
-          )
-            break;
+          //   case 10:
+          //   console.log(this.props.data)
+          //   return(
+          //   <Classes to={this.props.data.slug} aria-label={`View project "${this.props.data.title}"`}>
+          //     <Img fluid={this.props.data.cover.childImageSharp.fluid} />
+          //     <span>{this.props.data.title}</span>
+          //   </Classes>
+          // )
+          //   break;
 
             // case 12:
             // console.log("Made course project", this.props.data.node)
@@ -184,6 +184,7 @@ class PageItem extends React.Component {
             //   break;
 
         default:
+        console.log(this.props.data)
         if (this.props.data.node.categories) {
           console.log(this.props.data.node.categories.nodes, _.some(this.props.data.node.categories.nodes, {"name": "photos"}))
           if (!(_.some(this.props.data.node.categories.nodes, {"name": "photos"}))) {
@@ -259,7 +260,7 @@ export default function(props) {
           if (props.remove && e.node.id === props.remove) return;
             fileIndex = props.data.allFile.edges.find(({node}) => {
               if (node.parent) {
-                console.log(node.parent.id)
+                //console.log(node.parent.id)
                 if (lang != undefined) {
                   if (node.parent.id == `SitePage /${lang}/` + e.node.slug) {
                     return node
@@ -286,7 +287,7 @@ export default function(props) {
             }
 
       });
-      items.push(<PageItem key={"e.node.id"} data={props.data.firstProject} file={null} title={10} />)
+      //items.push(<PageItem key={"e.node.id"} data={props.data.firstProject} file={null} title={10} />)
       console.log(items)
     }
     return <Area>{items}</Area>;

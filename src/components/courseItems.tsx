@@ -16,7 +16,7 @@ const Area = styled(animated.div)`
   grid-template-rows: 35vw 40vw 25vw;
   grid-template-areas:
     'mid mid mid'
-    'first-project about-us about-us'
+    'about-us about-us about-us'
     'instagram instagram instagram';
 
   @media (max-width: ${(props) => props.theme.breakpoints[3]}) {

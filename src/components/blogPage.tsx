@@ -64,6 +64,7 @@ export default function() {
                 edges{
                   node{
                     excerpt
+                    uri
                     slug
                     date
                     title
