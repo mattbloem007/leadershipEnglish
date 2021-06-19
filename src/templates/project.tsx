@@ -12,8 +12,8 @@ import { usePageContext } from '../../PageContext';
 import contentParser from 'gatsby-wpgraphql-inline-images';
 
 const pluginOptions = {
-  wordPressUrl: 'http://wordpress.futureleadership.online/',
-  uploadsUrl: 'http://wordpress.futureleadership.online/wp-content/uploads/'
+  wordPressUrl: 'https://wordpress.futureleadership.online/',
+  uploadsUrl: 'https://wordpress.futureleadership.online/wp-content/uploads/'
 };
 
 const PBox = styled(AnimatedBox)`

@@ -110,8 +110,8 @@ module.exports = {
      {
       resolve: "gatsby-wpgraphql-inline-images",
       options: {
-        wordPressUrl: 'http://wordpress.futureleadership.online/',
-        uploadsUrl: 'http://wordpress.futureleadership.online/wp-content/uploads/',
+        wordPressUrl: 'https://wordpress.futureleadership.online/',
+        uploadsUrl: 'https://wordpress.futureleadership.online/wp-content/uploads/',
         processPostTypes: ["Page", "Post"],
         graphqlTypeName: `WPGraphQL`,
       },
