@@ -86,6 +86,30 @@ const Project = ({ data, pageContext }) => {
         <Description style={descAnimation}>
           <div>{contentParser({ content }, pluginOptions)}</div>
         </Description>
+        {(() => {
+           if (lang != 'cn') {
+             return (
+               <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
+                 <PButton color="#90BDDF" py={4} px={8}>
+                 <Link to="/" key="go back">
+                   Go Back
+                 </Link>
+                 </PButton>
+               </PBox>
+             )
+           } else if (lang == 'cn') {
+             return (
+               <PBox style={{ textAlign: 'center' }} py={10} px={[6, 6, 8, 10]}>
+                 <PButton color="#90BDDF" py={4} px={8}>
+                 <Link to="/" key="go back">
+                   回到主页
+                 </Link>
+                 </PButton>
+               </PBox>
+             )
+           }
+         })()}
+
       </PBox>
       <Content bg="#90BDDF" py={10}>
         <PBox style={imagesAnimation} px={[6, 6, 8, 10]}>

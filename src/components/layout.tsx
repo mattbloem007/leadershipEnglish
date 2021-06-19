@@ -13,7 +13,7 @@ import { usePageContext } from '../../PageContext';
 import Navbar from './Nav/NavBar';
 import { Facebook, Youtube, Twitter } from 'react-feather';
 import {FaTwitter, FaFacebookSquare, FaYoutube} from 'react-icons/fa'
-
+import { SiTiktok } from "react-icons/si";
 
 
 const GlobalStyles = createGlobalStyle`
@@ -245,7 +245,7 @@ const Layout = ({ children, color }: LayoutProps) => {
               justifyContent="space-between"
             >
             <Footer color={color}>
-              <Box p={[0, 0, 5]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
+              <Box p={[0, 0, 1]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
               <PButton color="#ff0000" py={4} px={4}>
               {(() => {
                  if (lang != 'cn') {
@@ -276,17 +276,31 @@ const Layout = ({ children, color }: LayoutProps) => {
                   <Logo />
                 </Link>
               </Box>
-              <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                <Link to="https://web.facebook.com/">
-                  <FaFacebookSquare size={'3em'}/>
-                </Link>
-                <Link to="https://youtube.com/">
-                  <FaYoutube size={'3em'} />
-                </Link>
-                <Link to="https://twitter.com/">
-                  <FaTwitter size={'3em'}/>
-                </Link>
-              </Box>
+
+              {(() => {
+                 if (lang != 'cn') {
+                   return (
+                     <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
+                       <Link to="https://web.facebook.com/">
+                         <FaFacebookSquare size={'3em'}/>
+                       </Link>
+                       <Link to="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ">
+                         <FaYoutube size={'3em'} />
+                       </Link>
+                       <Link to="https://twitter.com/">
+                         <FaTwitter size={'3em'}/>
+                       </Link>
+                     </Box>
+                   )
+                 } else if (lang == 'cn') {
+                   return (
+                     <Box p={[1, 1, 1]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
+                      <a href="https://www.douyin.com/"><SiTiktok size={'3em'}/></a>
+                     </Box>
+                   )
+                 }
+               })()}
+
               <Box p={[0, 0, 0]} fontSize={0} width={['33rem', '34rem', '33rem', '100%']}>
                 <Navbar />
               </Box>
