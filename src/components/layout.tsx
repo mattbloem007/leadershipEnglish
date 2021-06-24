@@ -123,6 +123,14 @@ const Wrapper = styled.div`
 const PButton = styled(Button)<{ color: string }>`
   background: ${(props) => (props.color === 'white' ? 'black' : props.color)};
   color: ${(props) => readableColor(props.color === 'white' ? 'black' : props.color)};
+
+  @media (max-width: ${(props) => props.theme.breakpoints[4]}) {
+    width: 50%;
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
+    width: 50%;
+  }
 `
 
 const SideBarInner = styled(Box)<{ bg: string }>`
@@ -202,7 +210,7 @@ const Footer = styled.footer<{ color: string }>`
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints[4]}) {
-    width: ${(props) => props.theme.sidebarWidth.normal};
+    width: 30%;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
@@ -289,6 +297,9 @@ const Layout = ({ children, color }: LayoutProps) => {
                        </Link>
                        <Link to="https://twitter.com/">
                          <FaTwitter size={'3em'}/>
+                       </Link>
+                       <Link to="https://tiktok.com/">
+                         <SiTiktok size={'3em'}/>
                        </Link>
                      </Box>
                    )
