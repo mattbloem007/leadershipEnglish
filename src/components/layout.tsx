@@ -209,14 +209,7 @@ const Footer = styled.footer<{ color: string }>`
     }
   }
 
-  @media (max-width: ${(props) => props.theme.breakpoints[4]}) {
-    width: 30%;
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
-    position: relative;
-    width: 20%;
-  }
+  
 `
 
 type LayoutProps = { children: React.ReactNode } & typeof defaultProps
