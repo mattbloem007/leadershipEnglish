@@ -123,14 +123,6 @@ const Wrapper = styled.div`
 const PButton = styled(Button)<{ color: string }>`
   background: ${(props) => (props.color === 'white' ? 'black' : props.color)};
   color: ${(props) => readableColor(props.color === 'white' ? 'black' : props.color)};
-
-  @media (max-width: ${(props) => props.theme.breakpoints[4]}) {
-    width: 50%;
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
-    width: 50%;
-  }
 `
 
 const SideBarInner = styled(Box)<{ bg: string }>`
@@ -209,7 +201,14 @@ const Footer = styled.footer<{ color: string }>`
     }
   }
 
-  
+  @media (max-width: ${(props) => props.theme.breakpoints[4]}) {
+    width: ${(props) => props.theme.sidebarWidth.normal};
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints[2]}) {
+    position: relative;
+    width: 20%;
+  }
 `
 
 type LayoutProps = { children: React.ReactNode } & typeof defaultProps
@@ -282,18 +281,18 @@ const Layout = ({ children, color }: LayoutProps) => {
                  if (lang != 'cn') {
                    return (
                      <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                       <Link to="https://web.facebook.com/">
+                       <a to="https://web.facebook.com/" target="_blank">
                          <FaFacebookSquare size={'3em'}/>
-                       </Link>
-                       <Link to="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ">
+                       </a>
+                       <a href="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ" target="_blank">
                          <FaYoutube size={'3em'} />
-                       </Link>
-                       <Link to="https://twitter.com/">
+                       </a>
+                       <a href="https://twitter.com/" target="_blank">
                          <FaTwitter size={'3em'}/>
-                       </Link>
-                       <Link to="https://tiktok.com/">
+                       </a>
+                       <a href="https://tiktok.com/" target="_blank">
                          <SiTiktok size={'3em'}/>
-                       </Link>
+                       </a>
                      </Box>
                    )
                  } else if (lang == 'cn') {
