@@ -281,7 +281,7 @@ const Layout = ({ children, color }: LayoutProps) => {
                  if (lang != 'cn') {
                    return (
                      <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                       <a to="https://web.facebook.com/" target="_blank">
+                       <a href="https://web.facebook.com/" target="_blank">
                          <FaFacebookSquare size={'3em'}/>
                        </a>
                        <a href="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ" target="_blank">
@@ -298,7 +298,7 @@ const Layout = ({ children, color }: LayoutProps) => {
                  } else if (lang == 'cn') {
                    return (
                      <Box p={[1, 1, 1]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                      <a href="https://www.douyin.com/"><SiTiktok size={'3em'}/></a>
+                      <a href="https://www.douyin.com/" target="_blank"><SiTiktok size={'3em'}/></a>
                      </Box>
                    )
                  }
