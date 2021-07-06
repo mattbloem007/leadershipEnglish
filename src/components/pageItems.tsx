@@ -93,7 +93,7 @@ class PageItem extends React.Component {
         return (
           <FirstProject to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
             {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-            <span>{this.props.data.node.title}</span>
+            <span dangerouslySetInnerHTML={{ __html: this.props.data.node.title}}></span>
           </FirstProject>
 
         );
@@ -103,7 +103,7 @@ class PageItem extends React.Component {
           return (
             <Mid to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
               {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-              <span>{this.props.data.node.title}</span>
+              <span dangerouslySetInnerHTML={{ __html: this.props.data.node.title}}></span>
             </Mid>
 
           );
@@ -114,7 +114,8 @@ class PageItem extends React.Component {
             return (
               <AboutUs to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
                 {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-                <span>{this.props.data.node.title}</span>
+                <span dangerouslySetInnerHTML={{ __html: this.props.data.node.title}}></span>
+
               </AboutUs>
 
             );
@@ -125,7 +126,7 @@ class PageItem extends React.Component {
           return (
             <FirstProject to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
               {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-              <span>{this.props.data.node.title}</span>
+              <span dangerouslySetInnerHTML={{ __html: this.props.data.node.title}}></span>
             </FirstProject>
 
           );
@@ -135,7 +136,8 @@ class PageItem extends React.Component {
             return (
               <Mid to={`/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
                 {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-                <span>{this.props.data.node.title}</span>
+                <span dangerouslySetInnerHTML={{ __html: this.props.data.node.title}}></span>
+
               </Mid>
 
             );

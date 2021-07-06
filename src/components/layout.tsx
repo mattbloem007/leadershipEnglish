@@ -131,7 +131,7 @@ const SideBarInner = styled(Box)<{ bg: string }>`
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: space-between;
 
 
@@ -240,12 +240,12 @@ const Layout = ({ children, color }: LayoutProps) => {
 
             <Flex
               flexWrap="nowrap"
-              flexDirection={['row', 'row', 'row', 'column']}
-              alignItems={['center', 'center', 'center', 'flex-start']}
+              flexDirection={['column', 'column', 'column', 'column']}
+              alignItems={['stretch', 'stretch', 'stretch', 'stretch']}
               justifyContent="space-between"
             >
             <Footer color={color}>
-              <Box p={[0, 0, 1]} fontSize={0} width={['33rem', '34rem', '33rem', '14rem']}>
+              <Box p={[1, 1, 1]} fontSize={0} width={['12rem', '12rem', '12rem', '12rem']}>
               <PButton color="#ff0000" py={4} px={4}>
               {(() => {
                  if (lang != 'cn') {
@@ -271,7 +271,7 @@ const Layout = ({ children, color }: LayoutProps) => {
   {    /**      <Box width={['3rem', '4rem', '5rem', '6rem']}>
 
             </Box>*/}
-              <Box width={['8rem', '8rem', '8rem', '8rem']}>
+              <Box width={['12rem', '12rem', '12rem', '12rem']}>
                 <Link to="/" aria-label="Future English, Back to Home">
                   <Logo />
                 </Link>
@@ -280,25 +280,32 @@ const Layout = ({ children, color }: LayoutProps) => {
               {(() => {
                  if (lang != 'cn') {
                    return (
-                     <Box p={[0, 0, 0]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                       <a href="https://web.facebook.com/" target="_blank">
-                         <FaFacebookSquare size={'3em'}/>
-                       </a>
-                       <a href="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ" target="_blank">
-                         <FaYoutube size={'3em'} />
-                       </a>
-                       <a href="https://twitter.com/" target="_blank">
-                         <FaTwitter size={'3em'}/>
-                       </a>
-                       <a href="https://tiktok.com/" target="_blank">
-                         <SiTiktok size={'3em'}/>
-                       </a>
-                     </Box>
+                     <Flex
+                       flexWrap="nowrap"
+                       flexDirection={['row', 'row', 'row', 'column']}
+                       alignItems={['center', 'center', 'center', 'flex-start']}
+                       justifyContent="space-between"
+                     >
+                       <Box p={[1, 1, 1]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
+                         <a href="https://web.facebook.com/" target="_blank">
+                           <FaFacebookSquare size={'2em'}/>
+                         </a>
+                         <a href="https://www.youtube.com/channel/UCdMSZjFiM7x_44MPh5jD9bQ" target="_blank">
+                           <FaYoutube size={'2em'} />
+                         </a>
+                         <a href="https://twitter.com/" target="_blank">
+                           <FaTwitter size={'2em'}/>
+                         </a>
+                         <a href="https://tiktok.com/" target="_blank">
+                           <SiTiktok size={'2em'}/>
+                         </a>
+                       </Box>
+                     </Flex>
                    )
                  } else if (lang == 'cn') {
                    return (
                      <Box p={[1, 1, 1]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
-                      <a href="https://www.douyin.com/" target="_blank"><SiTiktok size={'3em'}/></a>
+                      <a href="https://www.douyin.com/" target="_blank"><SiTiktok size={'2em'}/></a>
                      </Box>
                    )
                  }
