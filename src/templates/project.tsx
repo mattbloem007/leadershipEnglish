@@ -82,7 +82,7 @@ const Project = ({ data, pageContext }) => {
       />
       <PBox py={10} px={[6, 6, 8, 10]}>
 {/**        <Category style={categoryAnimation}>{project.category}</Category>*/}
-        <animated.h1 style={titleAnimation}>{pageContext.title}</animated.h1>
+        <animated.h1 style={titleAnimation} dangerouslySetInnerHTML={{ __html: pageContext.title}}></animated.h1>
         <Description style={descAnimation}>
           <div>{contentParser({ content }, pluginOptions)}</div>
         </Description>
