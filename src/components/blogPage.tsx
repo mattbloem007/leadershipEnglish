@@ -1,8 +1,10 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import BlogItems from "./blogItems";
+import BlogItemCn from "./blogItemscn"
 import styled from 'styled-components'
 import GridItem from './grid-item'
+import { usePageContext } from '../../PageContext';
 
 import { animated, useSpring, config } from 'react-spring'
 
@@ -72,7 +74,13 @@ export default function() {
                       sourceUrl(size: LARGE)
                       srcSet(size: MEDIUM_LARGE)
                     }
-
+                    tags {
+                      edges {
+                        node {
+                          name
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -100,14 +108,21 @@ export default function() {
 
     if (query.wpgraphql.posts.edges.length > 0) {
       console.log("QUERY", query.allFile)
+      const { lang } = usePageContext();
       const pageAnimation = useSpring({
         config: config.slow,
         from: { opacity: 0 },
         to: { opacity: 1 },
       })
+      if (lang == "cn") {
+        return (
+                <BlogItemCn data={query} />
+        );
+      } else {
         return (
                 <BlogItems data={query} />
         );
+      }
     } else {
         return <React.Fragment></React.Fragment>;
     }

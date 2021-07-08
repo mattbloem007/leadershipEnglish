@@ -14,6 +14,7 @@ import Navbar from './Nav/NavBar';
 import { Facebook, Youtube, Twitter } from 'react-feather';
 import {FaTwitter, FaFacebookSquare, FaYoutube} from 'react-icons/fa'
 import { SiTiktok } from "react-icons/si";
+import ReactStars from "react-rating-stars-component";
 
 
 const GlobalStyles = createGlobalStyle`
@@ -127,12 +128,14 @@ const PButton = styled(Button)<{ color: string }>`
 
 const SideBarInner = styled(Box)<{ bg: string }>`
   position: fixed;
-  height: 10%;
+  height: 100%;
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
 
 
   background: ${(props) => props.bg};
@@ -310,6 +313,24 @@ const Layout = ({ children, color }: LayoutProps) => {
                    )
                  }
                })()}
+
+
+               <Flex
+                 flexWrap="nowrap"
+                 flexDirection={['row', 'row', 'row', 'column']}
+                 alignItems={['center', 'center', 'center', 'flex-start']}
+                 justifyContent="space-between"
+               >
+                 <Box p={[1, 1, 1]} fontSize={0} width={['15rem', '15rem', '15rem', '14rem']}>
+                 <ReactStars
+                   count={5}
+                   value={5}
+                   size={24}
+                   edit={false}
+                   activeColor="#ffd700"
+                 />
+                 </Box>
+               </Flex>
 
               <Box p={[0, 0, 0]} fontSize={0} width={['33rem', '34rem', '33rem', '100%']}>
                 <Navbar />

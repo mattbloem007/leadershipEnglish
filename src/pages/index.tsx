@@ -118,7 +118,7 @@ const Index: React.FunctionComponent<PageProps> = () => {
   })
 
   return (
-    <Layout>
+    <Layout color="#90BDDF">
       <SEO />
       <InfoPages />
       {/**<Area style={pageAnimation}>
