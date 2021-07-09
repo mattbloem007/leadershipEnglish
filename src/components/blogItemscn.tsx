@@ -63,14 +63,24 @@ class BlogItemCn extends React.Component {
       if (this.props.file.node.childImageSharp) {
         isImage = true;
       }
-      console.log(this.props.data.node.title)
-        return (
-          <GridItem to={`/blog/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
-            {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
-            <span>{this.props.data.node.title}</span>
-          </GridItem>
+      console.log(this.props.data.node.tags)
+      if (this.props.data.node.tags.edges[0]) {
+        if (this.props.data.node.tags.edges[0].node.name == "cn") {
+          return (
+            <GridItem to={`/blog/${this.props.data.node.slug}`} aria-label={`View project "${this.props.data.node.title}"`}>
+              {isImage? <Img fluid={this.props.file.node.childImageSharp.fluid} />: null}
+              <span>{this.props.data.node.title}</span>
+            </GridItem>
 
-        );
+          );
+        }
+      }
+      else {
+        return (
+          null
+        )
+      }
+
     }
 }
 

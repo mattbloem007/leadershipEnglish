@@ -132,6 +132,7 @@ const SideBarInner = styled(Box)<{ bg: string }>`
   width: ${(props) => props.theme.sidebarWidth.big};
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;

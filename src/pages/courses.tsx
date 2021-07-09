@@ -41,7 +41,7 @@ const Projects = () => {
   })
 
   return (
-    <Layout>
+    <Layout color="#90BDDF">
       <SEO title="Courses | Future English Academy" />
       <CoursePage />
       {/**<Area style={pageAnimation}>
